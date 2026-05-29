@@ -1,0 +1,329 @@
+/* ==========================================
+   INDEX.CSS — Página de inicio
+   Portafolio CJ_CORE — Cristia Gimenez
+   ========================================== */
+
+
+        :root {
+            --primary-cyan: #00f0ff;
+            --surface-dark: #0a0b10;
+        }
+        body {
+            background-color: var(--surface-dark);
+            overflow-x: hidden;
+            cursor: crosshair;
+        }
+
+        /* ==========================================
+           SIDEBAR — Click para abrir/cerrar, queda abierto
+           (Fusionado desde los <style> inline del index.html)
+           ========================================== */
+        #sidebar {
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #sidebar.open {
+            width: 240px !important;
+        }
+        #sidebar.open .sidebar-label,
+        #sidebar.open .opacity-0 {
+            opacity: 1 !important;
+        }
+        #sidebar-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 45;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(2px);
+        }
+        #sidebar-backdrop.active {
+            display: block;
+        }
+
+        /* ==========================================
+           LOGO TYPEWRITER — el JS dispara la animación tras el boot
+           ========================================== */
+        #cj-logo.is-animating .cj-letter {
+            opacity: 0;
+            animation: cj-type-in 0.4s ease-out forwards;
+        }
+        #cj-logo.is-animating .cj-letter:nth-of-type(1) {
+            animation-delay: 0.1s;
+        }
+        #cj-logo.is-animating .cj-letter:nth-of-type(2) {
+            animation-delay: 0.8s;
+        }
+        @keyframes cj-type-in {
+            from { opacity: 0; transform: translateY(-2px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
+        /* ==========================================
+           BARRAS DE TECNOLOGÍAS — crecen al cargar y laten
+           ========================================== */
+        .tech-bar {
+            height: 100%;
+            background: var(--primary-cyan);
+            box-shadow: 0 0 6px var(--primary-cyan);
+            width: 0;
+            transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tech-bar.is-pulsing {
+            animation: tech-pulse 2.5s ease-in-out infinite;
+        }
+        @keyframes tech-pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--primary-cyan); }
+            50% { opacity: 0.6; box-shadow: 0 0 16px var(--primary-cyan); }
+        }
+
+        /* Tech Nebula Background */
+        .tech-nebula-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 15% 20%, rgba(0, 240, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(0, 79, 84, 0.12) 0%, transparent 50%),
+                linear-gradient(160deg, #050608 0%, #0d0e13 100%);
+            overflow: hidden;
+        }
+        
+        .data-stream-line {
+            position: absolute;
+            background: linear-gradient(to bottom, transparent, var(--primary-cyan), transparent);
+            width: 1px;
+            opacity: 0.15;
+            animation: move-stream 10s linear infinite;
+        }
+        @keyframes move-stream {
+            0% { transform: translateY(-100%) rotate(15deg); }
+            100% { transform: translateY(200%) rotate(15deg); }
+        }
+
+        .data-particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--primary-cyan);
+            border-radius: 50%;
+            opacity: 0.2;
+            pointer-events: none;
+            animation: drift-particle 20s linear infinite;
+        }
+        @keyframes drift-particle {
+            0% { transform: translate(0, 100vh); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translate(100px, -10vh); opacity: 0; }
+        }
+
+        .hud-grid {
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: center;
+        }
+
+        .scanning-line {
+            position: fixed;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #00f0ff, transparent);
+            left: 0;
+            top: -4px;
+            animation: scan 6s linear infinite;
+            z-index: 60;
+            pointer-events: none;
+            opacity: 0.2;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+
+        @keyframes scan {
+            0% { top: -4px; }
+            100% { top: 100%; }
+        }
+
+        .hud-rotate { animation: rotate 20s linear infinite; }
+        .hud-rotate-reverse { animation: rotate-reverse 30s linear infinite; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes rotate-reverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+        
+        /* Glitch Animation */
+        .glitch-container {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: #0A0B10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: glitch-fade-out 0.5s ease-in 3.5s forwards;
+            padding: 20px;
+        }
+
+        .glitch-text {
+            color: #00F0FF;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 900;
+            font-size: clamp(1.5rem, 8vw, 4rem);
+            position: relative;
+            animation: text-glitch 0.2s infinite;
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        @keyframes glitch-fade-out {
+            0% { opacity: 1; visibility: visible; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+
+        @keyframes text-glitch {
+            0% { transform: translate(0); text-shadow: 2px 0 #ff00c1, -2px 0 #00fff9; }
+            20% { transform: translate(-2px, 2px); text-shadow: -2px 0 #ff00c1, 2px 0 #00fff9; }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        /* Bio Sync Animation */
+        .bio-bar {
+            width: 4px;
+            background: var(--primary-cyan);
+            border-radius: 2px;
+            animation: bio-pulse 1s infinite alternate;
+        }
+        @keyframes bio-pulse {
+            from { height: 4px; opacity: 0.3; }
+            to { height: 24px; opacity: 1; }
+        }
+
+        /* Circular Progress */
+        .hud-circle-svg {
+            transform: rotate(-90deg);
+        }
+        .hud-circle-path {
+            stroke-dasharray: 100 100;
+            stroke-dashoffset: 100;
+            animation: circle-fill 4s linear infinite;
+        }
+        @keyframes circle-fill {
+            0% { stroke-dashoffset: 100; }
+            50% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: 100; }
+        }
+
+        /* Power Off Mode */
+        .power-off #main-content {
+            opacity: 0.1;
+            filter: grayscale(1) blur(4px);
+            pointer-events: none;
+        }
+        .power-off .scanning-line { display: none; }
+        #standby-overlay { display: none; }
+        .power-off #standby-overlay { display: flex; z-index: 900; }
+
+        /* Reset Overlay */
+        #reset-overlay { display: none; z-index: 950; }
+        #reset-overlay.active { display: flex; }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        #terminal-overlay {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 320px;
+            height: 224px;
+            background: rgba(10, 11, 16, 0.95);
+            border: 1px solid var(--primary-cyan);
+            z-index: 150;
+            font-family: monospace;
+            font-size: 10px;
+            padding: 10px;
+            color: var(--primary-cyan);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.15);
+        }
+        #terminal-overlay.active { display: flex; flex-direction: column; }
+    
+
+
+@media (min-width: 769px) {
+    #main-content { left: 70px; }
+}
+
+@media (max-width: 768px) {
+    #main-content {
+        position: relative !important;
+        height: auto !important;
+        min-height: calc(100vh - 3.5rem) !important;
+        overflow: visible !important;
+        left: 0 !important;
+        right: auto !important;
+        bottom: auto !important;
+        top: auto !important;
+        margin-top: 3.5rem !important;
+        padding-left: 70px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+}
+
+/* ==========================================
+   FIX MÓVIL/TABLET — Inicio (idéntico a Proyectos)
+   ========================================== */
+
+/* Sidebar coherente: solo expande con click en touch */
+@media (max-width: 1024px) {
+    #sidebar {
+        z-index: 60 !important;
+        width: 70px !important;
+    }
+    /* Evitar que el hover (Tailwind hover:w-[240px]) expanda al tocar */
+    #sidebar:hover { width: 70px !important; }
+    #sidebar.locked,
+    #sidebar.open {
+        width: 240px !important;
+    }
+    #sidebar.locked .opacity-0,
+    #sidebar.open .opacity-0,
+    #sidebar.locked .group-hover\:opacity-100,
+    #sidebar.open .group-hover\:opacity-100 {
+        opacity: 1 !important;
+    }
+    /* Cuerpo scrollable en mobile/tablet */
+    body { overflow-y: auto !important; }
+}
+
+/* Móvil (≤768px) */
+@media (max-width: 768px) {
+    nav .hidden.md\:flex { display: none !important; }
+
+    /* HUD ocupa pantalla con padding para el sidebar de 70px */
+    #main-content {
+        padding-left: 70px !important;
+        padding-right: 0 !important;
+    }
+    /* Footer fijo en HUD: ajustar a ancho disponible */
+    #main-content > .absolute.bottom-3 {
+        left: calc(50% + 35px) !important;
+        padding: 0 0.5rem !important;
+        text-align: center !important;
+    }
+    #main-content > .absolute.bottom-3 > div:first-child {
+        font-size: 7px !important;
+        white-space: normal !important;
+        line-height: 1.6 !important;
+    }
+}
+
+/* Móvil pequeño (≤480px) */
+@media (max-width: 480px) {
+    #main-content { padding-left: 60px !important; }
+    #main-content > .absolute.bottom-3 { left: calc(50% + 30px) !important; }
+}

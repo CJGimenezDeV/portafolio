@@ -1,0 +1,29 @@
+/* ==========================================
+   SELECTOR DE IDIOMA — Dropdown click (desktop + móvil)
+   ==========================================
+
+   Controlado por JS (js/lang-button.js) vía la clase .is-open
+   en #lang-wrapper.
+
+   Sin hover, sin group-hover. Mismo comportamiento en todos
+   los dispositivos: tap o click para abrir, click fuera para cerrar.
+
+   Compartido entre index.html, sobre mi.html, mis proyectos.html
+   y contacto.html.
+   ========================================== */
+
+#lang-dropdown {
+    /* Estado cerrado por defecto */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    pointer-events: none;
+}
+
+#lang-wrapper.is-open #lang-dropdown {
+    /* Estado abierto cuando el wrapper tiene .is-open */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}

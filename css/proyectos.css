@@ -1,0 +1,356 @@
+/* ==========================================
+   PROYECTOS.CSS — Portafolio CJ_CORE — Cristia Gimenez
+   ========================================== */
+
+
+        :root {
+            --primary-cyan: #00f0ff;
+            --surface-dark: #0A0B10;
+        }
+        body {
+            background-color: var(--surface-dark);
+            color: #e3e1e9;
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0;
+            cursor: crosshair;
+        }
+        
+        .nebula-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 240, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(0, 105, 112, 0.1) 0%, transparent 40%),
+                var(--surface-dark);
+            overflow: hidden;
+        }
+        .nebula-bg::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            mask-image: radial-gradient(ellipse at center, black, transparent 80%);
+            opacity: 0.2;
+        }
+
+        .binary-stream {
+            position: absolute;
+            font-family: monospace;
+            font-size: 10px;
+            color: var(--primary-cyan);
+            opacity: 0.1;
+            white-space: nowrap;
+            pointer-events: none;
+            animation: flow 20s linear infinite;
+        }
+        @keyframes flow {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(100vh); }
+        }
+
+        /* Power/Locked Mode */
+        #locked-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 100;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .power-off #locked-overlay { display: flex; }
+        
+        .matrix-text {
+            font-family: monospace;
+            color: var(--primary-cyan);
+            font-size: 12px;
+            opacity: 0.3;
+            overflow: hidden;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Reset Sequence */
+        #reset-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: #0A0B10;
+            z-index: 110;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        #reset-overlay.active { display: flex; }
+
+        /* Term/Console */
+        #terminal-overlay {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 320px;
+            height: 200px;
+            background: rgba(10, 11, 16, 0.9);
+            border: 1px solid var(--primary-cyan);
+            z-index: 60;
+            font-family: monospace;
+            font-size: 10px;
+            padding: 10px;
+            color: var(--primary-cyan);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+        }
+        #terminal-overlay.active { display: block; }
+
+        /* Language Dropdown — ELIMINADO
+           Las reglas que había aquí (#lang-dropdown { display:none } y
+           #lang-dropdown.active { display:block }) eran del antiguo sistema
+           de idioma y rompían el nuevo dropdown porque el display:none ganaba
+           a la visibility/opacity. Ahora todo se controla desde
+           css/lang-button.css usando #lang-wrapper.is-open. */
+
+        .blueprint-overlay {
+            background-image: linear-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.1) 1px, transparent 1px);
+            background-size: 10px 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 2px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0, 240, 255, 0.05); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0, 240, 255, 0.3); }
+
+        @media (max-width: 768px) {
+            main {
+                padding-left: 60px !important;
+            }
+        }
+    
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        @keyframes proyectos-glow {
+            0%, 100% { color: rgba(0, 240, 255, 0.5); text-shadow: none; }
+            50% { color: #00F0FF; text-shadow: 0 0 8px rgba(0, 240, 255, 0.8); }
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        body {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+            scroll-behavior: smooth;
+        }
+
+        /* Apply same to main container if needed */
+        main::-webkit-scrollbar {
+            display: none;
+        }
+        main {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* --- Sidebar móvil: se abre con click/touch --- */
+        @media (hover: none) {
+            #sidebar { width: 50px; }
+            #sidebar.open { width: 240px; }
+            #sidebar.open .opacity-0 { opacity: 1; }
+            #sidebar-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                z-index: 49;
+                background: rgba(0,0,0,0.5);
+            }
+            #sidebar-overlay.active { display: block; }
+        }
+
+        /* --- Sidebar: click para abrir/cerrar --- */
+        #sidebar {
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #sidebar.locked {
+            width: 240px !important;
+        }
+        #sidebar.locked .opacity-0 {
+            opacity: 1 !important;
+        }
+        #sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 49;
+            background: rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+        #sidebar-overlay.active {
+            display: block;
+        }
+    
+/* ==========================================
+   RESPONSIVE — Proyectos
+   Tablet: 768px-1366px | Móvil: <768px
+   ========================================== */
+
+/* Tablet/Laptop (hasta 1366px) */
+@media (max-width: 1366px) {
+    .ml-\[70px\] { margin-left: 70px !important; }
+    
+    /* 2 columnas en tablet */
+    .lg\:grid-cols-3 { grid-template-columns: repeat(2, 1fr) !important; }
+    
+    /* Padding reducido */
+    .p-12 { padding: 1.5rem !important; }
+    .gap-8 { gap: 1rem !important; }
+    
+    /* Título más pequeño */
+    .text-6xl, .text-7xl, .text-8xl { font-size: 3rem !important; }
+}
+
+/* Móvil (hasta 768px) */
+@media (max-width: 768px) {
+    /* Ocultar menú superior */
+    nav .hidden.md\:flex { display: none !important; }
+    
+    /* Main sin offset sidebar */
+    .ml-\[70px\] { margin-left: 0 !important; }
+    
+    /* 1 columna en móvil */
+    .md\:grid-cols-2, .lg\:grid-cols-3, .grid-cols-3 {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Scroll natural */
+    body { overflow-y: auto !important; overflow-x: hidden !important; }
+    
+    /* Padding reducido */
+    .p-6, .p-12, .md\:p-12 { padding: 1rem !important; }
+    .gap-8 { gap: 0.75rem !important; }
+    
+    /* Título ajustado */
+    .text-6xl, .text-7xl { font-size: 2.5rem !important; }
+    .text-4xl { font-size: 1.75rem !important; }
+    
+    /* Header de proyectos */
+    .mb-16 { margin-bottom: 1.5rem !important; }
+    
+    /* iFrame altura reducida en móvil */
+    .h-48 { height: 10rem !important; }
+}
+
+/* Móvil pequeño (hasta 480px) */
+@media (max-width: 480px) {
+    .text-6xl { font-size: 2rem !important; }
+    .p-6 { padding: 0.75rem !important; }
+}
+
+/* ==========================================
+   MÓVIL — Sidebar como overlay (no empuja contenido)
+   ========================================== */
+@media (max-width: 768px) {
+    /* Sidebar flota encima, no empuja nada */
+    #sidebar {
+        z-index: 60;
+        width: 70px !important;
+    }
+    #sidebar.open {
+        width: 240px !important;
+    }
+
+    /* Index: main ocupa todo el ancho */
+    #main-content {
+        left: 0 !important;
+        right: 0 !important;
+        top: 3.5rem !important;
+        bottom: 0 !important;
+    }
+
+    /* Sobre mi, Proyectos, Contacto: sin margen izquierdo */
+    #main-scroll-container,
+    .ml-\[70px\] {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    /* Nav superior ocupa todo */
+    nav {
+        left: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Ocultar menú de texto en nav, solo iconos sidebar */
+    nav .hidden.md\:flex {
+        display: none !important;
+    }
+}
+
+/* Proyectos main - desktop con sidebar, móvil sin offset */
+#main-content {
+    left: 70px;
+}
+@media (max-width: 768px) {
+    #main-content {
+        left: 0 !important;
+    }
+    /* Header padding en móvil */
+    #main-content header {
+        padding: 1rem !important;
+    }
+    #main-content header h1 {
+        font-size: 2rem !important;
+    }
+    /* Section de tarjetas con scroll */
+    #main-content section {
+        grid-template-columns: 1fr !important;
+        padding: 1rem !important;
+        gap: 1rem !important;
+    }
+}
+
+/* Móvil: main con scroll natural en vez de fixed */
+@media (max-width: 768px) {
+    #main-content {
+        position: relative !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        height: auto !important;
+        min-height: calc(100vh - 3.5rem) !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: auto !important;
+        bottom: auto !important;
+        margin-top: 3.5rem !important;
+    }
+
+    /* Tarjetas completas visibles */
+    #main-content section {
+        grid-template-columns: 1fr !important;
+        padding: 1rem !important;
+        gap: 1rem !important;
+        overflow: visible !important;
+        flex-grow: unset !important;
+    }
+
+    /* Cada tarjeta con altura automática */
+    #main-content section > div {
+        height: auto !important;
+        min-height: 200px !important;
+    }
+
+    /* Header padding móvil */
+    #main-content header {
+        padding: 1rem 1rem 0.75rem !important;
+    }
+    #main-content header h1 {
+        font-size: 1.8rem !important;
+    }
+    #main-content header p {
+        margin-top: 0.5rem !important;
+        font-size: 0.8rem !important;
+    }
+}

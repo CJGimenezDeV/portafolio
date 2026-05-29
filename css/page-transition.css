@@ -1,0 +1,215 @@
+/* ==========================================
+   TRANSICIONES ENTRE PÁGINAS — Glitch + Fade
+   Overlay full-screen que ejecuta animación al salir
+   y fade-in al cargar la nueva página.
+   ========================================== */
+
+/* ------- OVERLAY DE SALIDA (glitch) ------- */
+#page-transition-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99998;             /* Justo debajo del cursor HUD (99999) */
+    pointer-events: none;
+    opacity: 0;
+    background: #0A0B10;
+    overflow: hidden;
+}
+
+#page-transition-overlay.active {
+    pointer-events: auto;
+    animation: page-glitch-fade 500ms cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+/* Capas RGB para el efecto de distorsión cromática */
+#page-transition-overlay .glitch-layer {
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    mix-blend-mode: screen;
+}
+
+#page-transition-overlay.active .glitch-r {
+    background: rgba(255, 0, 80, 0.15);
+    animation: glitch-shift-r 500ms steps(8) forwards;
+}
+
+#page-transition-overlay.active .glitch-c {
+    background: rgba(0, 240, 255, 0.20);
+    animation: glitch-shift-c 500ms steps(8) forwards;
+}
+
+/* Líneas de escaneo (scanlines) */
+#page-transition-overlay .scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 2px,
+        rgba(0, 240, 255, 0.06) 2px,
+        rgba(0, 240, 255, 0.06) 3px
+    );
+    opacity: 0;
+}
+
+#page-transition-overlay.active .scanlines {
+    animation: scanlines-flicker 500ms steps(10) forwards;
+}
+
+/* Barras de glitch horizontales que aparecen y se mueven */
+#page-transition-overlay .glitch-bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: rgba(0, 240, 255, 0.4);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+    opacity: 0;
+    mix-blend-mode: screen;
+}
+
+#page-transition-overlay.active .glitch-bar-1 {
+    top: 30%;
+    animation: glitch-bar-move 500ms steps(6) forwards;
+}
+
+#page-transition-overlay.active .glitch-bar-2 {
+    top: 65%;
+    height: 8px;
+    animation: glitch-bar-move-2 500ms steps(5) forwards;
+    animation-delay: 80ms;
+}
+
+/* Texto cyberpunk en el centro durante la transición */
+#page-transition-overlay .glitch-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Space Grotesk', monospace;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    color: #00F0FF;
+    text-shadow: 0 0 8px #00F0FF, 0 0 16px rgba(0, 240, 255, 0.5);
+    opacity: 0;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+#page-transition-overlay.active .glitch-text {
+    animation: glitch-text-show 500ms steps(8) forwards;
+}
+
+/* ------- KEYFRAMES ------- */
+
+@keyframes page-glitch-fade {
+    0%   { opacity: 0; }
+    15%  { opacity: 0.8; }
+    25%  { opacity: 0.4; }
+    40%  { opacity: 0.9; }
+    55%  { opacity: 0.6; }
+    70%  { opacity: 1; }
+    100% { opacity: 1; }
+}
+
+@keyframes glitch-shift-r {
+    0%   { transform: translate(0, 0); }
+    20%  { transform: translate(-8px, 2px); }
+    40%  { transform: translate(6px, -3px); }
+    60%  { transform: translate(-4px, 1px); }
+    80%  { transform: translate(3px, -2px); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes glitch-shift-c {
+    0%   { transform: translate(0, 0); }
+    20%  { transform: translate(7px, -1px); }
+    40%  { transform: translate(-5px, 3px); }
+    60%  { transform: translate(4px, -2px); }
+    80%  { transform: translate(-3px, 1px); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes scanlines-flicker {
+    0%   { opacity: 0; }
+    20%  { opacity: 0.8; }
+    40%  { opacity: 0.2; }
+    60%  { opacity: 0.7; }
+    80%  { opacity: 0.4; }
+    100% { opacity: 0.9; }
+}
+
+@keyframes glitch-bar-move {
+    0%   { opacity: 0; transform: translateY(0); }
+    20%  { opacity: 1; transform: translateY(-40px); }
+    40%  { opacity: 0; transform: translateY(60px); }
+    60%  { opacity: 1; transform: translateY(20px); }
+    80%  { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@keyframes glitch-bar-move-2 {
+    0%   { opacity: 0; }
+    25%  { opacity: 0.8; transform: translateX(20px); }
+    50%  { opacity: 0; transform: translateX(-15px); }
+    75%  { opacity: 0.6; transform: translateX(10px); }
+    100% { opacity: 0; }
+}
+
+@keyframes glitch-text-show {
+    0%   { opacity: 0; transform: translate(-50%, -50%) skewX(0deg); }
+    25%  { opacity: 1; transform: translate(-48%, -50%) skewX(-2deg); }
+    50%  { opacity: 0.3; transform: translate(-52%, -50%) skewX(3deg); }
+    75%  { opacity: 1; transform: translate(-50%, -50%) skewX(-1deg); }
+    100% { opacity: 1; transform: translate(-50%, -50%) skewX(0deg); }
+}
+
+/* ------- FADE-IN DE ENTRADA ------- */
+/* La página NACE oculta (opacity:0) desde el primer instante de pintado,
+   para que durante la milésima de carga no se vea el cursor de Windows
+   sobre el crosshair. Se revela sola con una animación.
+
+   RED DE SEGURIDAD: la animación 'page-reveal' se dispara SOLA al cargar
+   (sin depender del JS). Si el JS de transición fallara o no cargara,
+   la página aparece igualmente a los 400ms — nunca se queda en negro. */
+body {
+    animation: page-reveal 400ms ease-out 0ms forwards;
+}
+
+@keyframes page-reveal {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* El JS añade .page-entering para reforzar el fade controlado.
+   Mantiene compatibilidad con el resto de la lógica existente. */
+body.page-entering {
+    animation: page-reveal 400ms ease-out forwards;
+}
+
+/* ------- ACCESIBILIDAD ------- */
+/* Si el usuario tiene "reduce motion" activado, desactivamos animaciones */
+@media (prefers-reduced-motion: reduce) {
+    #page-transition-overlay.active {
+        animation: simple-fade 200ms ease forwards;
+    }
+    #page-transition-overlay.active .glitch-layer,
+    #page-transition-overlay.active .scanlines,
+    #page-transition-overlay.active .glitch-bar,
+    #page-transition-overlay.active .glitch-text {
+        animation: none !important;
+        opacity: 0 !important;
+    }
+    body,
+    body.page-entering {
+        animation: simple-fade-in 200ms ease forwards;
+    }
+    @keyframes simple-fade {
+        to { opacity: 1; }
+    }
+    @keyframes simple-fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+}

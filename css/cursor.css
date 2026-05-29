@@ -1,0 +1,156 @@
+/* ==========================================
+   CURSOR HUD CYBERPUNK — Cruceta + [ ACCESS ]
+   Solo desktop (hover: pointer & fine pointer)
+   ========================================== */
+
+/* Solo desktop puro: hover y pointer fino (sintaxis estándar y robusta).
+   El cursor:none va lo primero para que se aplique de inmediato y no
+   parpadee el cursor de Windows al cambiar de página. */
+@media (hover: hover) and (pointer: fine) {
+
+    /* Ocultar cursor del sistema en toda la web */
+    html, html * {
+        cursor: none !important;
+    }
+
+    /* Contenedor del cursor — sigue al ratón via JS */
+    #hud-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 32px;
+        height: 32px;
+        pointer-events: none;
+        z-index: 99999;
+        transform: translate(-50%, -50%);
+        transition: width 0.18s ease, height 0.18s ease;
+        will-change: transform;
+    }
+
+    /* La cruceta — 4 líneas en cruz + punto central */
+    #hud-cursor .crosshair {
+        position: absolute;
+        inset: 0;
+        transition: opacity 0.15s ease;
+    }
+
+    /* Líneas de la cruz */
+    #hud-cursor .line {
+        position: absolute;
+        background: #00F0FF;
+        box-shadow: 0 0 6px #00F0FF, 0 0 12px rgba(0, 240, 255, 0.5);
+        transition: all 0.18s ease;
+    }
+    #hud-cursor .line-top {
+        top: 0;
+        left: 50%;
+        width: 1px;
+        height: 9px;
+        transform: translateX(-50%);
+    }
+    #hud-cursor .line-bottom {
+        bottom: 0;
+        left: 50%;
+        width: 1px;
+        height: 9px;
+        transform: translateX(-50%);
+    }
+    #hud-cursor .line-left {
+        left: 0;
+        top: 50%;
+        width: 9px;
+        height: 1px;
+        transform: translateY(-50%);
+    }
+    #hud-cursor .line-right {
+        right: 0;
+        top: 50%;
+        width: 9px;
+        height: 1px;
+        transform: translateY(-50%);
+    }
+
+    /* Punto central */
+    #hud-cursor .dot {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 3px;
+        height: 3px;
+        background: #00F0FF;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 8px #00F0FF, 0 0 16px rgba(0, 240, 255, 0.6);
+        transition: all 0.18s ease;
+    }
+
+    /* Corchetes [ ] — ocultos por defecto, aparecen en hover */
+    #hud-cursor .bracket {
+        position: absolute;
+        top: 50%;
+        font-family: 'Space Grotesk', 'JetBrains Mono', monospace;
+        font-size: 18px;
+        font-weight: 300;
+        color: #00F0FF;
+        text-shadow: 0 0 6px #00F0FF, 0 0 12px rgba(0, 240, 255, 0.6);
+        opacity: 0;
+        transform: translateY(-50%);
+        transition: opacity 0.18s ease, left 0.18s ease, right 0.18s ease;
+        line-height: 1;
+    }
+    #hud-cursor .bracket-left {
+        left: -2px;
+    }
+    #hud-cursor .bracket-right {
+        right: -2px;
+    }
+
+    /* ESTADO HOVER — el JS añade la clase .hover al pasar por clickables */
+    #hud-cursor.hover {
+        width: 44px;
+        height: 44px;
+    }
+    #hud-cursor.hover .line {
+        background: #00F0FF;
+        box-shadow: 0 0 10px #00F0FF, 0 0 20px rgba(0, 240, 255, 0.8);
+    }
+    #hud-cursor.hover .line-top,
+    #hud-cursor.hover .line-bottom {
+        height: 7px;
+    }
+    #hud-cursor.hover .line-left,
+    #hud-cursor.hover .line-right {
+        width: 7px;
+    }
+    #hud-cursor.hover .dot {
+        width: 4px;
+        height: 4px;
+        box-shadow: 0 0 12px #00F0FF, 0 0 24px rgba(0, 240, 255, 0.9);
+    }
+    #hud-cursor.hover .bracket {
+        opacity: 1;
+    }
+    #hud-cursor.hover .bracket-left {
+        left: -12px;
+    }
+    #hud-cursor.hover .bracket-right {
+        right: -12px;
+    }
+
+    /* ESTADO CLICK — feedback al pulsar */
+    #hud-cursor.clicking {
+        width: 24px;
+        height: 24px;
+    }
+    #hud-cursor.clicking .dot {
+        width: 6px;
+        height: 6px;
+        box-shadow: 0 0 16px #00F0FF, 0 0 32px #00F0FF;
+    }
+
+    /* ESTADO INACTIVO — fuera de la ventana */
+    #hud-cursor.inactive {
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+}
