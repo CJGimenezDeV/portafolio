@@ -391,3 +391,16 @@
     border: 1px solid rgba(0, 240, 255, 0.3);
     white-space: nowrap;
 }
+
+/* ============================================================
+   Título HABILIDADES — texto adaptativo (solo móvil)
+   Escritorio: muestra el texto largo. Móvil: el corto.
+   El escritorio NO se toca.
+   ============================================================ */
+.hab-corta { display: none; }
+.hab-larga { display: inline; }
+
+@media (max-width: 768px) {
+    .hab-larga { display: none; }
+    .hab-corta { display: inline; }
+}

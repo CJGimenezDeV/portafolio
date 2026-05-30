@@ -306,3 +306,16 @@
     }
     #main-scroll-container .text-4xl { font-size: 1.75rem !important; }
 }
+
+/* ============================================================
+   Texto adaptativo SOLO MÓVIL — título y botón cortos.
+   Escritorio: textos largos. Móvil (<=768px): textos cortos.
+   El escritorio NO se toca.
+   ============================================================ */
+.term-corta { display: none; }
+.term-larga { display: inline; }
+
+@media (max-width: 768px) {
+    .term-larga { display: none; }
+    .term-corta { display: inline; }
+}

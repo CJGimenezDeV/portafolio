@@ -26,13 +26,13 @@
 <!-- Theme -->
 <meta name="theme-color" content="#0a0b10"/>
 <!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="/img/favicon.svg"/>
-<link rel="icon" type="image/png" href="/img/favicon-32.png"/>
-<link rel="apple-touch-icon" href="/img/apple-touch-icon.png"/>
-<link rel="stylesheet" href="/css/cursor.css"/>
-<link rel="stylesheet" href="/css/index.css"/>
-<link rel="stylesheet" href="/css/page-transition.css"/>
-<link rel="stylesheet" href="/css/lang-button.css"/>
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg"/>
+<link rel="icon" type="image/png" href="img/favicon-32.png"/>
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
+<link rel="stylesheet" href="css/cursor.css"/>
+<link rel="stylesheet" href="css/index.css"/>
+<link rel="stylesheet" href="css/page-transition.css"/>
+<link rel="stylesheet" href="css/lang-button.css"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -348,6 +348,60 @@
     </div>
 </div>
 </main>
+<!-- ============================================
+     HOME MÓVIL — Panel interactivo (solo ≤768px)
+     El escritorio queda intacto: oculto por CSS por defecto.
+     ============================================ -->
+<section id="mobile-home" aria-label="Inicio">
+<div class="mh-status mh-rise" style="animation-delay:3.9s">
+<span class="mh-dot"></span>
+<span>SISTEMA EN LÍNEA</span>
+<span class="mh-clock" id="mh-clock">--:--:--</span>
+</div>
+<div class="mh-id mh-rise" style="animation-delay:4s">
+<div class="mh-avatar">
+<img src="img/cristia-avatar.png" alt="Cristia Gimenez — Diseñador y Desarrollador Web"/>
+</div>
+<div class="mh-tagline">[ CJ_CORE // PERFIL_04 ]</div>
+<h1 class="mh-name">CRISTIA GIMENEZ</h1>
+<div class="mh-role">DISEÑADOR &amp; DESARROLLADOR WEB</div>
+<div class="mh-term">
+<span class="mh-prompt">&gt;</span>
+<span id="mh-type"></span><span class="mh-caret"></span>
+</div>
+<div class="mh-chips">
+<span class="mh-chip">HTML</span>
+<span class="mh-chip">CSS</span>
+<span class="mh-chip">JavaScript</span>
+<span class="mh-chip">Diseño UI</span>
+<span class="mh-chip">PHP</span>
+</div>
+</div>
+<nav class="mh-nav" aria-label="Secciones">
+<a class="mh-proyectos" href="/mis-proyectos">
+<div class="mh-pj-head">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="mh-pj-tag">DESTACADO</span>
+</div>
+<div class="mh-pj-title">PROYECTOS</div>
+<div class="mh-pj-sub">Mira en lo que estoy trabajando</div>
+<div class="mh-pj-cta">ENTRAR <span class="material-symbols-outlined">arrow_forward</span></div>
+</a>
+<div class="mh-row">
+<a class="mh-tile mh-rise" href="/sobre-mi" style="animation-delay:4.25s">
+<span class="material-symbols-outlined">person_search</span>
+<span class="mh-tile-t">SOBRE MÍ</span>
+<span class="mh-tile-s">Quién hay detrás</span>
+</a>
+<a class="mh-tile mh-rise" href="/contacto" style="animation-delay:4.33s">
+<span class="material-symbols-outlined">mail</span>
+<span class="mh-tile-t">CONTACTO</span>
+<span class="mh-tile-s">Hablemos</span>
+</a>
+</div>
+</nav>
+<div class="mh-foot mh-rise" style="animation-delay:4.45s">© 2026 CJ_CORE — CRISTIA GIMENEZ — cjgimenez.com</div>
+</section>
 <!-- Terminal System Overlay -->
 <div id="terminal-overlay">
 <div class="flex justify-between items-center border-b border-[#00F0FF]/30 pb-2 mb-3">
@@ -360,10 +414,11 @@
 </div>
 </div>
 
-    <script src="/js/index.js"></script>
-    <script src="/js/cursor.js"></script>
-    <script src="/js/page-transition.js"></script>
-    <script src="/js/lang-button.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/page-transition.js"></script>
+    <script src="js/lang-button.js"></script>
+    <script src="js/home-mobile.js"></script>
 <script>
 (function() {
     var sb = document.getElementById('sidebar');

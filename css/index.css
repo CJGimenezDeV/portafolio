@@ -327,3 +327,293 @@
     #main-content { padding-left: 60px !important; }
     #main-content > .absolute.bottom-3 { left: calc(50% + 30px) !important; }
 }
+
+/* ==========================================
+   HOME MÓVIL — Panel interactivo (solo ≤768px)
+   El escritorio NO se toca: #mobile-home oculto por defecto.
+   ========================================== */
+#mobile-home { display: none; }
+
+@media (max-width: 768px) {
+    body { cursor: auto; overflow-y: auto !important; }
+
+    /* En el inicio móvil: fuera el HUD circular y el rail lateral */
+    #main-content { display: none !important; }
+    #sidebar { display: none !important; }
+    #sidebar-backdrop { display: none !important; }
+
+    #mobile-home {
+        display: flex !important;
+        flex-direction: column;
+        position: relative;
+        z-index: 40;
+        width: 100%;
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: 76px 18px 26px;
+        gap: 14px;
+    }
+
+    /* ---- Línea de estado ---- */
+    .mh-status {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-family: 'Space Grotesk', monospace;
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(0, 240, 255, 0.7);
+    }
+    .mh-status .mh-clock {
+        margin-left: auto;
+        color: rgba(0, 240, 255, 0.4);
+        letter-spacing: 0.12em;
+        font-variant-numeric: tabular-nums;
+    }
+    .mh-dot {
+        width: 7px; height: 7px;
+        border-radius: 50%;
+        background: var(--primary-cyan);
+        box-shadow: 0 0 10px var(--primary-cyan);
+        animation: mh-blink 1.6s ease-in-out infinite;
+    }
+
+    /* ---- Tarjeta de identidad ---- */
+    .mh-id {
+        position: relative;
+        border: 1px solid rgba(0, 240, 255, 0.22);
+        background: linear-gradient(160deg, rgba(13, 14, 19, 0.92), rgba(10, 11, 16, 0.7));
+        backdrop-filter: blur(8px);
+        padding: 24px 18px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        overflow: hidden;
+    }
+    /* esquinas tácticas */
+    .mh-id::before, .mh-id::after {
+        content: "";
+        position: absolute;
+        width: 18px; height: 18px;
+        border: 2px solid var(--primary-cyan);
+        opacity: 0.55;
+    }
+    .mh-id::before { top: 8px; left: 8px; border-right: 0; border-bottom: 0; }
+    .mh-id::after { bottom: 8px; right: 8px; border-left: 0; border-top: 0; }
+
+    .mh-avatar {
+        width: 96px; height: 96px;
+        border-radius: 50%;
+        border: 2px solid rgba(0, 240, 255, 0.6);
+        padding: 3px;
+        background: #0a0b10;
+        box-shadow: 0 0 26px rgba(0, 240, 255, 0.28);
+        overflow: hidden;
+        flex: none;
+    }
+    .mh-avatar img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        object-position: 50% 16%;
+        border-radius: 50%;
+    }
+
+    .mh-tagline {
+        margin-top: 14px;
+        font-family: 'Space Grotesk', monospace;
+        font-size: 9.5px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: rgba(0, 240, 255, 0.55);
+    }
+    .mh-name {
+        margin-top: 8px;
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: 26px;
+        letter-spacing: 0.1em;
+        color: #fff;
+        line-height: 1.05;
+    }
+    .mh-role {
+        margin-top: 7px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--primary-cyan);
+        text-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+    }
+    .mh-term {
+        margin-top: 16px;
+        width: 100%;
+        border: 1px solid rgba(0, 240, 255, 0.16);
+        background: rgba(0, 240, 255, 0.04);
+        padding: 10px 12px;
+        font-family: 'Space Grotesk', monospace;
+        font-size: 13px;
+        color: rgba(227, 225, 233, 0.92);
+        text-align: left;
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+    }
+    .mh-term .mh-prompt { color: var(--primary-cyan); margin-right: 7px; font-weight: 700; }
+    .mh-caret {
+        display: inline-block;
+        width: 8px; height: 1.05em;
+        margin-left: 3px;
+        vertical-align: -2px;
+        background: var(--primary-cyan);
+        box-shadow: 0 0 8px var(--primary-cyan);
+        animation: mh-caret-blink 1s steps(1) infinite;
+    }
+
+    .mh-chips {
+        margin-top: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        justify-content: center;
+    }
+    .mh-chip {
+        font-family: 'Space Grotesk', monospace;
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(0, 240, 255, 0.82);
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        padding: 5px 10px;
+        border-radius: 999px;
+        background: rgba(0, 240, 255, 0.05);
+        transition: all 0.25s;
+        cursor: pointer;
+    }
+    .mh-chip.is-active,
+    .mh-chip:active {
+        background: var(--primary-cyan);
+        color: #001417;
+        border-color: var(--primary-cyan);
+        box-shadow: 0 0 14px rgba(0, 240, 255, 0.5);
+    }
+
+    /* ---- Navegación ---- */
+    .mh-nav { display: flex; flex-direction: column; gap: 12px; }
+
+    .mh-proyectos {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        border: 1px solid rgba(0, 240, 255, 0.5);
+        background: linear-gradient(150deg, rgba(0, 240, 255, 0.13), rgba(0, 240, 255, 0.03) 55%, rgba(10, 11, 16, 0.6));
+        padding: 18px 18px 16px;
+        text-decoration: none;
+        overflow: hidden;
+        opacity: 0;
+        animation: mh-rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) 4.1s forwards,
+                   mh-pulse-border 2.8s ease-in-out 4.9s infinite;
+    }
+    .mh-proyectos:active { transform: scale(0.985); }
+    .mh-pj-head { display: flex; align-items: center; justify-content: space-between; }
+    .mh-pj-head .material-symbols-outlined {
+        font-size: 30px;
+        color: var(--primary-cyan);
+        filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.6));
+    }
+    .mh-pj-tag {
+        font-family: 'Space Grotesk', monospace;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: #001417;
+        background: var(--primary-cyan);
+        padding: 4px 9px;
+        border-radius: 999px;
+        box-shadow: 0 0 14px rgba(0, 240, 255, 0.5);
+    }
+    .mh-pj-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: 30px;
+        letter-spacing: 0.06em;
+        color: #fff;
+        line-height: 1;
+        text-shadow: 0 0 16px rgba(0, 240, 255, 0.25);
+    }
+    .mh-pj-sub { font-size: 12.5px; color: rgba(227, 225, 233, 0.7); }
+    .mh-pj-cta {
+        margin-top: 5px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        align-self: flex-start;
+        font-family: 'Space Grotesk', monospace;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--primary-cyan);
+    }
+    .mh-pj-cta .material-symbols-outlined {
+        font-size: 18px;
+        animation: mh-nudge 1.6s ease-in-out infinite;
+    }
+
+    .mh-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .mh-tile {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        align-items: flex-start;
+        border: 1px solid rgba(0, 240, 255, 0.2);
+        background: rgba(13, 14, 19, 0.72);
+        padding: 16px 14px;
+        text-decoration: none;
+        transition: border-color 0.25s, background 0.25s, transform 0.15s;
+    }
+    .mh-tile:active {
+        border-color: rgba(0, 240, 255, 0.7);
+        background: rgba(0, 240, 255, 0.08);
+        transform: scale(0.97);
+    }
+    .mh-tile .material-symbols-outlined { font-size: 26px; color: var(--primary-cyan); }
+    .mh-tile-t {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #fff;
+    }
+    .mh-tile-s { font-size: 11px; color: rgba(227, 225, 233, 0.55); letter-spacing: 0.04em; }
+
+    .mh-foot {
+        margin-top: auto;
+        padding-top: 12px;
+        text-align: center;
+        font-family: 'Space Grotesk', monospace;
+        font-size: 9px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(0, 240, 255, 0.3);
+    }
+
+    /* ---- Animaciones del panel ---- */
+    .mh-rise { opacity: 0; animation: mh-rise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
+}
+
+@keyframes mh-rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: none; }
+}
+@keyframes mh-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+@keyframes mh-caret-blink { 50% { opacity: 0; } }
+@keyframes mh-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
+@keyframes mh-pulse-border {
+    0%, 100% { box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.4), 0 0 20px rgba(0, 240, 255, 0.12); border-color: rgba(0, 240, 255, 0.45); }
+    50% { box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.8), 0 0 36px rgba(0, 240, 255, 0.32); border-color: rgba(0, 240, 255, 0.85); }
+}

@@ -1,7 +1,7 @@
 <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-  <rect width="64" height="64" rx="10" fill="#0a0b10"/>
+  <rect width="64" height="64" rx="10" fill="#0a0b10"></rect>
   <text x="26" y="40" text-anchor="middle" fill="#00F0FF" font-family="monospace" font-size="26" font-weight="900">C</text>
   <text x="40" y="40" text-anchor="middle" fill="#00F0FF" font-family="monospace" font-size="26" font-weight="900">J</text>
-  <path d="M 16 14 L 9 14 L 9 50 L 16 50" fill="none" stroke="#00F0FF" stroke-width="2.6"/>
-  <path d="M 48 14 L 55 14 L 55 50 L 48 50" fill="none" stroke="#00F0FF" stroke-width="2.6"/>
+  <path d="M 16 14 L 9 14 L 9 50 L 16 50" fill="none" stroke="#00F0FF" stroke-width="2.6"></path>
+  <path d="M 48 14 L 55 14 L 55 50 L 48 50" fill="none" stroke="#00F0FF" stroke-width="2.6"></path>
 </svg>
