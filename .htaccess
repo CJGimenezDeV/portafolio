@@ -97,3 +97,11 @@ ErrorDocument 404 /404.html
 <Files ".htaccess">
     Require all denied
 </Files>
+
+# ------------------------------------------------------------
+# 9) PROTEGER config.php (credenciales SMTP)
+#    Nadie debe poder abrirlo por URL.
+# ------------------------------------------------------------
+<Files "config.php">
+    Require all denied
+</Files>

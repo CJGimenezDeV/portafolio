@@ -307,19 +307,21 @@
 </div>
 </div>
 <form class="space-y-6 flex flex-col flex-grow" id="transmission-form">
+<!-- Honeypot anti-spam: oculto para humanos, los bots lo rellenan -->
+<input type="text" name="website" id="hp-website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;"/>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 <div class="group">
 <label class="block font-label-caps text-primary-container/60 text-[10px] mb-3 tracking-[0.3em]">NOMBRE</label>
 <div class="flex items-center border-b border-primary-container/20 group-focus-within:border-primary-container transition-all py-3">
 <span class="text-primary-container mr-4 font-mono-data text-lg">] &gt;</span>
-<input class="bg-transparent border-none focus:ring-0 text-primary-container font-mono-data w-full placeholder:text-primary-container/10 uppercase text-base" placeholder="TU_NOMBRE" required="" type="text"/>
+<input class="bg-transparent border-none focus:ring-0 text-primary-container font-mono-data w-full placeholder:text-primary-container/10 uppercase text-base" placeholder="TU_NOMBRE" required="" type="text" name="nombre" id="field-nombre" maxlength="100"/>
 </div>
 </div>
 <div class="group">
 <label class="block font-label-caps text-primary-container/60 text-[10px] mb-3 tracking-[0.3em]">EMAIL</label>
 <div class="flex items-center border-b border-primary-container/20 group-focus-within:border-primary-container transition-all py-3">
 <span class="text-primary-container mr-4 font-mono-data text-lg">] &gt;</span>
-<input class="bg-transparent border-none focus:ring-0 text-primary-container font-mono-data w-full placeholder:text-primary-container/10 uppercase text-base" placeholder="TU_EMAIL" required="" type="email"/>
+<input class="bg-transparent border-none focus:ring-0 text-primary-container font-mono-data w-full placeholder:text-primary-container/10 uppercase text-base" placeholder="TU_EMAIL" required="" type="email" name="email" id="field-email"/>
 </div>
 </div>
 </div>
@@ -327,7 +329,7 @@
 <label class="block font-label-caps text-primary-container/60 text-[10px] mb-3 tracking-[0.3em]">PAQUETE_DATOS</label>
 <div class="flex items-start border border-primary-container/10 group-focus-within:border-primary-container bg-primary-container/5 p-6 transition-all rounded-sm relative">
 <span class="text-primary-container mr-4 font-mono-data text-lg mt-1">] &gt;</span>
-<textarea class="bg-transparent border-none focus:ring-0 text-primary-container font-mono-data w-full placeholder:text-primary-container/10 uppercase text-base resize-none custom-scrollbar min-h-[60px]" id="msg-textarea" onfocus="startTypingSimulation(this)" placeholder="ESTABLECER_FLUJO_DE_MENSAJE..." required="" rows="2"></textarea>
+<textarea class="bg-transparent border-none focus:ring-0 text-primary-container font-mono-data w-full placeholder:text-primary-container/10 uppercase text-base resize-none custom-scrollbar min-h-[60px]" id="msg-textarea" name="mensaje" maxlength="5000" onfocus="startTypingSimulation(this)" placeholder="ESTABLECER_FLUJO_DE_MENSAJE..." required="" rows="2"></textarea>
 </div>
 <div class="flex justify-between mt-4 font-mono-data text-[10px] text-primary-container/30 uppercase tracking-[0.4em]">
 <span>REGISTRO_LOG: ACTIVO</span>

@@ -1,27 +1,28 @@
-# OS 
-Thumbs.db 
-Desktop.ini 
-.DS_Store 
- 
-# Comprimidos y backups 
-*.zip 
-*.rar 
-*.7z 
-*.bak 
-*.tmp 
-*- copia.* 
-* - copia.* 
- 
-# Editores 
-.vscode/ 
-.idea/ 
- 
-# Logs 
-*.log 
- 
-# Node (futuro) 
-node_modules/ 
- 
-# Sensibles 
-.env 
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Comprimidos y backups
+*.zip
+*.rar
+*.7z
+*.bak
+*.tmp
+*- copia.*
+* - copia.*
+
+# Editores
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Node (futuro)
+node_modules/
+
+# Sensibles — NUNCA subir credenciales
+.env
 .env.local
+config.php

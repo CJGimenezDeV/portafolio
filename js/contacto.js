@@ -103,15 +103,50 @@ let powerOn = true;
             }, 50);
         }
 
-        // Form Submission
-        document.getElementById('transmission-form').addEventListener('submit', (e) => {
+        // Form Submission — ENVÍO REAL a contacto.php
+        const transmissionForm = document.getElementById('transmission-form');
+        const submitBtn = document.getElementById('submit-btn');
+
+        transmissionForm.addEventListener('submit', (e) => {
             e.preventDefault();
+
+            // Abrimos la terminal y mostramos inicio (tu estética)
             logTerminal("INICIANDO TRANSMISIÓN DE PAQUETE...", "text-primary-container font-bold uppercase animate-pulse mt-2");
             document.getElementById('terminal-overlay').classList.add('active');
-            
-            setTimeout(() => {
-                logTerminal("TRANSMISIÓN EXITOSA. ACUSE_RECIBO_OK", "text-green-400 font-bold uppercase");
-            }, 2000);
+
+            // Bloqueamos el botón mientras se envía (evita doble click)
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.5';
+            submitBtn.style.pointerEvents = 'none';
+
+            // Recogemos los datos del formulario
+            const formData = new FormData(transmissionForm);
+
+            // Enviamos al backend PHP
+            fetch('/contacto.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.ok) {
+                    logTerminal("TRANSMISIÓN EXITOSA. ACUSE_RECIBO_OK", "text-green-400 font-bold uppercase");
+                    logTerminal("MENSAJE ENTREGADO AL NÚCLEO CJ_CORE", "text-green-400/70 uppercase");
+                    transmissionForm.reset();
+                    updateProgress(); // resetea la barra de progreso a 0%
+                } else {
+                    logTerminal("ERROR DE TRANSMISIÓN: " + (data.error || 'FALLO DESCONOCIDO'), "text-red-400 font-bold uppercase");
+                }
+            })
+            .catch(() => {
+                logTerminal("FALLO DE CONEXIÓN CON EL NÚCLEO. REINTENTA.", "text-red-400 font-bold uppercase");
+            })
+            .finally(() => {
+                // Reactivamos el botón pase lo que pase
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+                submitBtn.style.pointerEvents = 'auto';
+            });
         });
 
         // Progress bar logic
