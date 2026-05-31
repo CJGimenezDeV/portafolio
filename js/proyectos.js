@@ -104,3 +104,45 @@ let isPowerOn = true;
         });
     });
 })();
+/* ==========================================
+   MODAL DE PROYECTO — abrir/cerrar overlay grande navegable
+   ========================================== */
+
+function abrirProyecto(url, titulo) {
+    /* En móvil no se abre el modal: la tarjeta muestra la captura ("ábrelo en escritorio") */
+    if (window.matchMedia('(max-width: 768px)').matches) return;
+    var modal = document.getElementById('proyecto-modal');
+    if (!modal) return;
+    var frame = document.getElementById('proyecto-modal-frame');
+    var tit = document.getElementById('proyecto-modal-titulo');
+    if (tit) tit.textContent = titulo || 'PROYECTO';
+    if (frame) frame.src = url;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function cerrarProyecto() {
+    var modal = document.getElementById('proyecto-modal');
+    if (!modal) return;
+    var frame = document.getElementById('proyecto-modal-frame');
+    modal.classList.remove('active');
+    if (frame) frame.src = 'about:blank'; /* descarga la web al cerrar */
+    document.body.style.overflow = '';
+}
+
+(function() {
+    var modal = document.getElementById('proyecto-modal');
+    if (!modal) return;
+
+    /* Clic en el fondo del modal (fuera del marco) = cerrar */
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) cerrarProyecto();
+    });
+
+    /* ESC = cerrar */
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            cerrarProyecto();
+        }
+    });
+})();

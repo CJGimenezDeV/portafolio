@@ -334,31 +334,4 @@
     <script src="js/page-transition.js"></script>
     <script src="js/lang-button.js"></script>
     <script src="js/home-mobile.js"></script>
-<script>
-(function() {
-    var sb = document.getElementById('sidebar');
-    if (!sb) return;
-    var bd = document.createElement('div');
-    bd.id = 'sidebar-backdrop';
-    document.body.appendChild(bd);
-
-    sb.addEventListener('click', function(e) {
-        if (e.target.closest('a') || e.target.closest('[onclick]')) return;
-        if (!sb.classList.contains('open')) {
-            sb.classList.add('open');
-            bd.classList.add('active');
-        }
-    });
-    bd.addEventListener('click', function() {
-        sb.classList.remove('open');
-        bd.classList.remove('active');
-    });
-    sb.querySelectorAll('a').forEach(function(a) {
-        a.addEventListener('click', function() {
-            sb.classList.remove('open');
-            bd.classList.remove('active');
-        });
-    });
-})();
-</script>
 </body></html>

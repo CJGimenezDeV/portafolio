@@ -130,3 +130,34 @@ let isPowerOn = true;
                 playLogoAnim();
             }, 4500);
         };
+/* ==========================================
+   SIDEBAR — click para abrir/cerrar (solo escritorio).
+   En móvil index usa #mobile-home y no hay #sidebar, así que
+   el "if (!sb) return" hace que aquí no pase nada en móvil.
+   Movido desde el <script> inline del HTML (sin cambios).
+   ========================================== */
+(function() {
+    var sb = document.getElementById('sidebar');
+    if (!sb) return;
+    var bd = document.createElement('div');
+    bd.id = 'sidebar-backdrop';
+    document.body.appendChild(bd);
+
+    sb.addEventListener('click', function(e) {
+        if (e.target.closest('a') || e.target.closest('[onclick]')) return;
+        if (!sb.classList.contains('open')) {
+            sb.classList.add('open');
+            bd.classList.add('active');
+        }
+    });
+    bd.addEventListener('click', function() {
+        sb.classList.remove('open');
+        bd.classList.remove('active');
+    });
+    sb.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+            sb.classList.remove('open');
+            bd.classList.remove('active');
+        });
+    });
+})();

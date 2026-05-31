@@ -38,19 +38,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 
 
-<style>
-/* Sidebar: click para abrir/cerrar */
-#sidebar.open { width: 240px !important; }
-#sidebar.open .opacity-0 { opacity: 1 !important; }
-#sidebar-backdrop {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 45;
-    background: rgba(0,0,0,0.4);
-}
-#sidebar-backdrop.active { display: block; }
-</style>
 </head>
 <body class="bg-surface text-on-surface min-h-screen">
 <!-- Locked Screen -->
@@ -89,15 +76,15 @@
 <div class="flex items-center gap-4">
 <a href="/" class="block cursor-pointer" aria-label="CJ - Cristia Gimenez - Inicio">
 <svg width="120" height="48" viewBox="0 0 140 56" xmlns="http://www.w3.org/2000/svg">
-<text x="58" y="30" text-anchor="middle" fill="#00F0FF" font-family="monospace" font-size="30" font-weight="900" style="filter:drop-shadow(0 0 6px #00F0FF);">C</text>
-<text x="82" y="30" text-anchor="middle" fill="#00F0FF" font-family="monospace" font-size="30" font-weight="900" style="filter:drop-shadow(0 0 6px #00F0FF);">J</text>
+<text x="58" y="30" text-anchor="middle" fill="#00F0FF" font-family="monospace" font-size="30" font-weight="900" class="logo-glow">C</text>
+<text x="82" y="30" text-anchor="middle" fill="#00F0FF" font-family="monospace" font-size="30" font-weight="900" class="logo-glow">J</text>
 <path d="M 22 8 L 10 8 L 10 42 L 22 42" fill="none" stroke="#00F0FF" stroke-width="2.2"/>
 <path d="M 118 8 L 130 8 L 130 42 L 118 42" fill="none" stroke="#00F0FF" stroke-width="2.2"/>
 <text x="70" y="52" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="8.5" letter-spacing="2.5">CRISTIA GIMENEZ</text>
 </svg>
 </a>
 </div>
-<div class="hidden md:flex items-center space-x-10 absolute left-1/2 -translate-x-1/2" style="left: calc(50% + 25px);">
+<div class="hidden md:flex items-center space-x-10 absolute left-1/2 -translate-x-1/2 nav-centro">
 <a class="font-mono-data tracking-[0.2em] uppercase text-[11px] text-on-surface-variant hover:text-primary-container transition-colors" href="/">INICIO</a>
 <a class="font-mono-data tracking-[0.2em] uppercase text-[11px] text-on-surface-variant hover:text-primary-container transition-colors" href="/sobre-mi">SOBRE MÍ</a>
 <a class="font-mono-data tracking-[0.2em] uppercase text-[11px] text-primary-container border-b-2 border-primary-container pb-1" href="#">PROYECTOS</a>
@@ -134,7 +121,7 @@
 <svg width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="CJ avatar">
 <polygon points="50,8 86,28 86,72 50,92 14,72 14,28" fill="none" stroke="#00F0FF" stroke-width="2" opacity="0.4"/>
 <polygon points="50,16 79,32 79,68 50,84 21,68 21,32" fill="none" stroke="#00F0FF" stroke-width="1" opacity="0.8"/>
-<text x="50" y="62" text-anchor="middle" fill="#00F0FF" font-family="monospace" font-size="32" font-weight="900" style="filter:drop-shadow(0 0 4px #00F0FF);">CJ</text>
+<text x="50" y="62" text-anchor="middle" fill="#00F0FF" font-family="monospace" font-size="32" font-weight="900" class="logo-glow-sm">CJ</text>
 <circle cx="50" cy="8" r="2" fill="#00F0FF"/>
 <circle cx="50" cy="92" r="2" fill="#00F0FF"/>
 </svg>
@@ -174,7 +161,7 @@
 </div>
 </div>
 </aside>
-<main class="fixed overflow-hidden flex flex-col" style="top: 3.5rem; right: 0; bottom: 0;" id="main-content">
+<main class="fixed overflow-hidden flex flex-col main-fijo" id="main-content">
 <header class="px-6 md:px-12 py-16 border-b border-[#00F0FF]/10 border-dashed">
 <div class="flex items-center space-x-4 mb-2">
 <div class="w-3 h-3 bg-cyan-400 shadow-[0_0_12px_#00f0ff]"></div>
@@ -198,12 +185,12 @@
 <div class="text-[9px] font-bold text-cyan-400 bg-cyan-400/10 px-2 py-1 border border-cyan-400/30 uppercase">ORIGEN</div>
 </div>
 <div class="relative h-48 w-full overflow-hidden bg-black/40 flex items-center justify-center">
-<iframe src="about:blank" class="w-full h-full border-0 pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity" data-src="placeholder" title="Hola Mundo"></iframe>
-<div class="absolute inset-0 flex items-center justify-center text-cyan-400/20 font-mono-data text-2xl group-hover:opacity-0 transition-opacity">DEMO PRÓXIMAMENTE</div>
-<div class="absolute inset-0 blueprint-overlay opacity-20"></div>
+<img src="img/proyectos/holamundo.svg" alt="Captura del primer Hola Mundo en el navegador" loading="lazy" class="tarjeta-captura" />
+<div class="absolute inset-0 blueprint-overlay opacity-20 pointer-events-none"></div>
 </div>
 <div class="p-4 space-y-3 flex-grow">
 <p class="text-[11px] text-white/50 font-mono-data">El punto de partida. Primer contacto con HTML y CSS.</p>
+<p class="text-[11px] text-cyan-400/70 font-mono-data tarjeta-frase">"Todo imperio empieza con dos palabras."</p>
 <div class="flex gap-2 flex-wrap">
 <span class="text-[9px] px-2 py-1 border border-cyan-400/20 text-cyan-400/70 font-mono-data uppercase">HTML</span>
 <span class="text-[9px] px-2 py-1 border border-cyan-400/20 text-cyan-400/70 font-mono-data uppercase">CSS</span>
@@ -220,10 +207,13 @@
 </div>
 <div class="text-[9px] font-bold text-cyan-400 bg-cyan-400/10 px-2 py-1 border border-cyan-400/30 uppercase">COMPLETADO</div>
 </div>
-<div class="relative h-48 w-full overflow-hidden bg-black/40 flex items-center justify-center">
-<iframe src="about:blank" class="w-full h-full border-0 pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity" data-src="placeholder" title="Tienda Mágica"></iframe>
-<div class="absolute inset-0 flex items-center justify-center text-cyan-400/20 font-mono-data text-2xl group-hover:opacity-0 transition-opacity">DEMO PRÓXIMAMENTE</div>
-<div class="absolute inset-0 blueprint-overlay opacity-20"></div>
+<div class="relative h-48 w-full overflow-hidden bg-black/40 flex items-center justify-center proyecto-clic" onclick="abrirProyecto('https://magica.cjgimenez.com', 'Tienda Mágica')">
+<iframe src="https://magica.cjgimenez.com" class="solo-desktop w-full h-full border-0 pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity" loading="lazy" title="Tienda Mágica"></iframe>
+<div class="solo-movil tarjeta-movil-wrap">
+<img src="img/proyectos/magica.webp" alt="Vista de la Tienda Mágica" loading="lazy" class="tarjeta-movil-img" />
+<div class="absolute bottom-0 left-0 right-0 text-center text-[9px] font-mono-data text-cyan-400/90 bg-black/70 py-1 uppercase tracking-wider">Vista previa · ábrelo en escritorio</div>
+</div>
+<div class="absolute inset-0 blueprint-overlay opacity-20 pointer-events-none"></div>
 </div>
 <div class="p-4 space-y-3 flex-grow">
 <p class="text-[11px] text-white/50 font-mono-data">Tienda virtual de fantasía con catálogo de productos y diseño inmersivo.</p>
@@ -235,42 +225,22 @@
 </div>
 </div>
 
-<!-- Card 3: Flotadores y Bañadores -->
+<!-- Card 3: Academia Swahili -->
 <div class="group relative bg-[#0A0B10]/60 border border-[#00F0FF]/10 hover:border-[#00F0FF]/50 transition-all duration-500 overflow-hidden backdrop-blur-sm flex flex-col">
 <div class="p-4 flex justify-between items-start border-b border-[#00F0FF]/10 border-dashed">
 <div>
 <p class="font-mono-data text-[10px] text-cyan-400/60">MISIÓN_03</p>
-<h3 class="font-headline-md text-lg text-white uppercase mt-1">Tienda de Playa</h3>
-</div>
-<div class="text-[9px] font-bold text-cyan-400 bg-cyan-400/10 px-2 py-1 border border-cyan-400/30 uppercase">COMPLETADO</div>
-</div>
-<div class="relative h-48 w-full overflow-hidden bg-black/40 flex items-center justify-center">
-<iframe src="about:blank" class="w-full h-full border-0 pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity" data-src="placeholder" title="Tienda de Playa"></iframe>
-<div class="absolute inset-0 flex items-center justify-center text-cyan-400/20 font-mono-data text-2xl group-hover:opacity-0 transition-opacity">DEMO PRÓXIMAMENTE</div>
-<div class="absolute inset-0 blueprint-overlay opacity-20"></div>
-</div>
-<div class="p-4 space-y-3 flex-grow">
-<p class="text-[11px] text-white/50 font-mono-data">Réplica de web comercial de flotadores y bañadores. Diseño responsive.</p>
-<div class="flex gap-2 flex-wrap">
-<span class="text-[9px] px-2 py-1 border border-cyan-400/20 text-cyan-400/70 font-mono-data uppercase">HTML</span>
-<span class="text-[9px] px-2 py-1 border border-cyan-400/20 text-cyan-400/70 font-mono-data uppercase">CSS</span>
-</div>
-</div>
-</div>
-
-<!-- Card 4: Academia Swahili -->
-<div class="group relative bg-[#0A0B10]/60 border border-[#00F0FF]/10 hover:border-[#00F0FF]/50 transition-all duration-500 overflow-hidden backdrop-blur-sm flex flex-col">
-<div class="p-4 flex justify-between items-start border-b border-[#00F0FF]/10 border-dashed">
-<div>
-<p class="font-mono-data text-[10px] text-cyan-400/60">MISIÓN_04</p>
 <h3 class="font-headline-md text-lg text-white uppercase mt-1">Academia Swahili</h3>
 </div>
 <div class="text-[9px] font-bold text-cyan-400 bg-cyan-400/10 px-2 py-1 border border-cyan-400/30 uppercase">COMPLETADO</div>
 </div>
-<div class="relative h-48 w-full overflow-hidden bg-black/40 flex items-center justify-center">
-<iframe src="about:blank" class="w-full h-full border-0 pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity" data-src="placeholder" title="Academia Swahili"></iframe>
-<div class="absolute inset-0 flex items-center justify-center text-cyan-400/20 font-mono-data text-2xl group-hover:opacity-0 transition-opacity">DEMO PRÓXIMAMENTE</div>
-<div class="absolute inset-0 blueprint-overlay opacity-20"></div>
+<div class="relative h-48 w-full overflow-hidden bg-black/40 flex items-center justify-center proyecto-clic" onclick="abrirProyecto('https://swahili.cjgimenez.com', 'Academia Swahili')">
+<iframe src="https://swahili.cjgimenez.com" class="solo-desktop w-full h-full border-0 pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity" loading="lazy" title="Academia Swahili"></iframe>
+<div class="solo-movil tarjeta-movil-wrap">
+<img src="img/proyectos/swahili.webp" alt="Vista de la Academia Swahili" loading="lazy" class="tarjeta-movil-img" />
+<div class="absolute bottom-0 left-0 right-0 text-center text-[9px] font-mono-data text-cyan-400/90 bg-black/70 py-1 uppercase tracking-wider">Vista previa · ábrelo en escritorio</div>
+</div>
+<div class="absolute inset-0 blueprint-overlay opacity-20 pointer-events-none"></div>
 </div>
 <div class="p-4 space-y-3 flex-grow">
 <p class="text-[11px] text-white/50 font-mono-data">Web para academia de idioma Swahili. Diseño educativo y accesible.</p>
@@ -282,11 +252,11 @@
 </div>
 </div>
 
-<!-- Card 5: Gorgonópsidos -->
+<!-- Card 4: Gorgonópsidos -->
 <div class="group relative bg-[#0A0B10]/60 border border-[#00F0FF]/10 hover:border-[#00F0FF]/50 transition-all duration-500 overflow-hidden backdrop-blur-sm flex flex-col">
 <div class="p-4 flex justify-between items-start border-b border-[#00F0FF]/10 border-dashed">
 <div>
-<p class="font-mono-data text-[10px] text-cyan-400/60">MISIÓN_05</p>
+<p class="font-mono-data text-[10px] text-cyan-400/60">MISIÓN_04</p>
 <h3 class="font-headline-md text-lg text-white uppercase mt-1">Gorgonópsidos</h3>
 </div>
 <div class="text-[9px] font-bold text-cyan-400 bg-cyan-400/10 px-2 py-1 border border-cyan-400/30 uppercase">COMPLETADO</div>
@@ -305,26 +275,53 @@
 </div>
 </div>
 
-<!-- Card 6: Portal del Curso -->
+<!-- Card 5: TuHaz -->
 <div class="group relative bg-[#0A0B10]/60 border border-[#00F0FF]/10 hover:border-[#00F0FF]/50 transition-all duration-500 overflow-hidden backdrop-blur-sm flex flex-col">
 <div class="p-4 flex justify-between items-start border-b border-[#00F0FF]/10 border-dashed">
 <div>
-<p class="font-mono-data text-[10px] text-cyan-400/60">MISIÓN_06</p>
-<h3 class="font-headline-md text-lg text-white uppercase mt-1">Portal del Curso</h3>
+<p class="font-mono-data text-[10px] text-cyan-400/60">MISIÓN_05</p>
+<h3 class="font-headline-md text-lg text-white uppercase mt-1">TuHaz</h3>
 </div>
 <div class="text-[9px] font-bold text-cyan-400 bg-cyan-400/10 px-2 py-1 border border-cyan-400/30 uppercase">COMPLETADO</div>
 </div>
-<div class="relative h-48 w-full overflow-hidden bg-black/40 flex items-center justify-center">
-<iframe src="about:blank" class="w-full h-full border-0 pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity" data-src="placeholder" title="Portal del Curso"></iframe>
-<div class="absolute inset-0 flex items-center justify-center text-cyan-400/20 font-mono-data text-2xl group-hover:opacity-0 transition-opacity">DEMO PRÓXIMAMENTE</div>
-<div class="absolute inset-0 blueprint-overlay opacity-20"></div>
+<div class="relative h-48 w-full overflow-hidden bg-black/40 flex items-center justify-center proyecto-clic" onclick="abrirProyecto('https://tuhaz.cjgimenez.com', 'TuHaz')">
+<iframe src="https://tuhaz.cjgimenez.com" class="solo-desktop w-full h-full border-0 pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity" loading="lazy" title="TuHaz"></iframe>
+<div class="solo-movil tarjeta-movil-wrap">
+<img src="img/proyectos/tuhaz.webp" alt="Vista de TuHaz" loading="lazy" class="tarjeta-movil-img" />
+<div class="absolute bottom-0 left-0 right-0 text-center text-[9px] font-mono-data text-cyan-400/90 bg-black/70 py-1 uppercase tracking-wider">Vista previa · ábrelo en escritorio</div>
+</div>
+<div class="absolute inset-0 blueprint-overlay opacity-20 pointer-events-none"></div>
 </div>
 <div class="p-4 space-y-3 flex-grow">
-<p class="text-[11px] text-white/50 font-mono-data">Portal que agrupa y presenta los proyectos de los compañeros del curso.</p>
+<p class="text-[11px] text-white/50 font-mono-data">Landing para entrenador personal online. Diseño elegante y enfoque en conversión.</p>
 <div class="flex gap-2 flex-wrap">
 <span class="text-[9px] px-2 py-1 border border-cyan-400/20 text-cyan-400/70 font-mono-data uppercase">HTML</span>
 <span class="text-[9px] px-2 py-1 border border-cyan-400/20 text-cyan-400/70 font-mono-data uppercase">CSS</span>
 <span class="text-[9px] px-2 py-1 border border-cyan-400/20 text-cyan-400/70 font-mono-data uppercase">JS</span>
+</div>
+</div>
+</div>
+
+<!-- Card 6: CoreGest (proyecto propio, privado, sin iframe) -->
+<div class="group relative bg-[#0A0B10]/60 border border-[#00F0FF]/10 hover:border-[#00F0FF]/50 transition-all duration-500 overflow-hidden backdrop-blur-sm flex flex-col">
+<div class="p-4 flex justify-between items-start border-b border-[#00F0FF]/10 border-dashed">
+<div>
+<p class="font-mono-data text-[10px] text-cyan-400/60">MISIÓN_06</p>
+<h3 class="font-headline-md text-lg text-white uppercase mt-1">CoreGest <span class="text-[10px] text-cyan-400/50 normal-case">(provisional)</span></h3>
+</div>
+<div class="text-[9px] font-bold text-cyan-400 bg-cyan-400/10 px-2 py-1 border border-cyan-400/30 uppercase">PRIVADO · EN DESARROLLO</div>
+</div>
+<div class="relative h-48 w-full overflow-hidden bg-black/40 flex items-center justify-center">
+<img src="img/proyectos/coregest.webp" alt="Vista del panel de CoreGest" loading="lazy" class="tarjeta-captura" />
+<div class="absolute inset-0 blueprint-overlay opacity-20 pointer-events-none"></div>
+</div>
+<div class="p-4 space-y-3 flex-grow">
+<p class="text-[11px] text-white/50 font-mono-data">SaaS de gestión integral para negocios. Proyecto propio en desarrollo activo. Acceso privado.</p>
+<div class="flex gap-2 flex-wrap">
+<span class="text-[9px] px-2 py-1 border border-cyan-400/20 text-cyan-400/70 font-mono-data uppercase">PHP 8</span>
+<span class="text-[9px] px-2 py-1 border border-cyan-400/20 text-cyan-400/70 font-mono-data uppercase">MySQL</span>
+<span class="text-[9px] px-2 py-1 border border-cyan-400/20 text-cyan-400/70 font-mono-data uppercase">JS Vanilla</span>
+<span class="text-[9px] px-2 py-1 border border-cyan-400/20 text-cyan-400/70 font-mono-data uppercase">SaaS</span>
 </div>
 </div>
 </div>
@@ -358,35 +355,19 @@
 
 
 
+<!-- Modal de proyecto: overlay grande navegable dentro del portafolio -->
+<div id="proyecto-modal">
+  <div class="proyecto-modal-marco">
+    <div class="proyecto-modal-barra">
+      <span class="proyecto-modal-titulo" id="proyecto-modal-titulo">PROYECTO</span>
+      <button type="button" class="proyecto-modal-cerrar" onclick="cerrarProyecto()">[ CERRAR ✕ ]</button>
+    </div>
+    <iframe id="proyecto-modal-frame" class="proyecto-modal-frame" src="about:blank" title="Proyecto"></iframe>
+  </div>
+</div>
+
     <script src="js/proyectos.js"></script>
     <script src="js/cursor.js"></script>
     <script src="js/page-transition.js"></script>
     <script src="js/lang-button.js"></script>
-<script>
-(function() {
-    var sb = document.getElementById('sidebar');
-    if (!sb) return;
-    var bd = document.createElement('div');
-    bd.id = 'sidebar-backdrop';
-    document.body.appendChild(bd);
-
-    sb.addEventListener('click', function(e) {
-        if (e.target.closest('a') || e.target.closest('[onclick]')) return;
-        if (!sb.classList.contains('open')) {
-            sb.classList.add('open');
-            bd.classList.add('active');
-        }
-    });
-    bd.addEventListener('click', function() {
-        sb.classList.remove('open');
-        bd.classList.remove('active');
-    });
-    sb.querySelectorAll('a').forEach(function(a) {
-        a.addEventListener('click', function() {
-            sb.classList.remove('open');
-            bd.classList.remove('active');
-        });
-    });
-})();
-</script>
 </body></html>

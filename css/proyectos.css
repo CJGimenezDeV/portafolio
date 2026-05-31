@@ -354,3 +354,145 @@
         font-size: 0.8rem !important;
     }
 }
+/* ==========================================
+   MODAL DE PROYECTO — overlay grande navegable
+   Clic en una tarjeta con web en vivo → abre el proyecto
+   dentro del portafolio. Clic fuera o ESC = cierra.
+   ========================================== */
+
+#proyecto-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(0, 4, 8, 0.85);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 4vh 4vw;
+    cursor: pointer; /* clic en el fondo = cerrar */
+}
+#proyecto-modal.active {
+    display: flex;
+    flex-direction: column;
+    animation: proyecto-modal-in 0.25s ease-out;
+}
+@keyframes proyecto-modal-in {
+    from { opacity: 0; transform: scale(0.98); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* Marco del modal (el iframe sí es interactivo, por eso cursor normal) */
+.proyecto-modal-marco {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    box-shadow: 0 0 40px rgba(0, 240, 255, 0.15), inset 0 0 60px rgba(0, 240, 255, 0.04);
+    background: #0A0B10;
+    cursor: default;
+    overflow: hidden;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Barra superior del modal con título + cerrar */
+.proyecto-modal-barra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 1rem;
+    border-bottom: 1px dashed rgba(0, 240, 255, 0.2);
+    background: rgba(0, 240, 255, 0.04);
+    flex-shrink: 0;
+}
+.proyecto-modal-titulo {
+    font-family: 'Space Grotesk', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(0, 240, 255, 0.9);
+}
+.proyecto-modal-cerrar {
+    font-family: 'Space Grotesk', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: #ff5a5a;
+    border: 1px solid rgba(255, 90, 90, 0.4);
+    background: rgba(255, 90, 90, 0.08);
+    padding: 0.25rem 0.7rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+}
+.proyecto-modal-cerrar:hover {
+    background: rgba(255, 90, 90, 0.2);
+    color: #fff;
+}
+
+/* El iframe grande, navegable */
+.proyecto-modal-frame {
+    flex: 1;
+    width: 100%;
+    border: 0;
+    background: #fff;
+}
+
+/* La miniatura de la tarjeta: dejar claro que es clicable */
+.proyecto-clic {
+    cursor: pointer;
+}
+
+/* ==========================================
+   CLASES PARA REEMPLAZAR style="" INLINE (limpieza)
+   ========================================== */
+
+/* Logo SVG nav/sidebar con glow */
+.logo-glow { filter: drop-shadow(0 0 6px #00F0FF); }
+.logo-glow-sm { filter: drop-shadow(0 0 4px #00F0FF); }
+
+/* Nav centrado con ligero offset (antes inline) */
+.nav-centro { left: calc(50% + 25px); }
+
+/* Main fijo bajo el header (antes inline) */
+.main-fijo { top: 3.5rem; right: 0; bottom: 0; }
+
+/* Imagen de captura dentro de tarjeta (Hola Mundo) */
+.tarjeta-captura {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    opacity: 0.85;
+    transition: opacity .5s;
+}
+.group:hover .tarjeta-captura { opacity: 1; }
+
+/* Frase en cursiva de la tarjeta */
+.tarjeta-frase { font-style: italic; }
+
+/* Contenedor de vista móvil de tarjeta */
+.tarjeta-movil-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.tarjeta-movil-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
+
+/* iframe en escritorio / captura en móvil (antes en el <style> inline) */
+.solo-movil { display: none; }
+.solo-desktop { display: block; }
+@media (max-width: 768px) {
+    .solo-desktop { display: none !important; }
+    .solo-movil { display: block !important; }
+
+    /* En móvil el modal ocupa toda la pantalla sin márgenes */
+    #proyecto-modal { padding: 0; }
+    .proyecto-modal-marco { border: none; }
+}
