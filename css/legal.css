@@ -1,0 +1,157 @@
+/* ============================================================
+   legal.css — Estilos de páginas legales (política de privacidad)
+   Estética HUD cyan, coherente con el resto del portafolio.
+   Documento de lectura: tipografía clara sobre fondo oscuro.
+   ============================================================ */
+
+/* La nebulosa de fondo (reutiliza el patrón del resto del sitio) */
+.tech-nebula-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(0, 240, 255, 0.04), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(0, 240, 255, 0.03), transparent 40%);
+    pointer-events: none;
+}
+
+/* Sidebar: ancho fijo 70px que se expande en hover (igual que el resto) */
+#sidebar {
+    width: 70px;
+    overflow: hidden;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 60;
+}
+#sidebar:hover {
+    width: 240px;
+}
+
+/* Ocultar el texto de las etiquetas salvo al hacer hover en el sidebar.
+   Replica el comportamiento de las clases opacity-0 / group-hover de Tailwind
+   sin depender de que estén compiladas. */
+#sidebar .opacity-0 {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+#sidebar:hover .opacity-0 {
+    opacity: 1;
+}
+
+/* El main arranca tras la sidebar de 70px */
+#main-content {
+    left: 70px;
+}
+
+/* Cabecera del documento */
+.legal-doc-header {
+    border-bottom: 1px dashed rgba(0, 240, 255, 0.2);
+    padding-bottom: 1.5rem;
+}
+
+/* Panel/tarjeta de cada sección */
+.legal-panel {
+    background: rgba(13, 14, 19, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 240, 255, 0.15);
+    border-left: 2px solid rgba(0, 240, 255, 0.5);
+    padding: 1.5rem 1.75rem;
+    border-radius: 2px;
+    position: relative;
+}
+
+/* Títulos de sección */
+.legal-h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #00F0FF;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Numerito monoespaciado delante de cada título */
+.legal-num {
+    font-family: 'Space Grotesk', monospace;
+    font-size: 0.7rem;
+    color: rgba(0, 240, 255, 0.4);
+    border: 1px solid rgba(0, 240, 255, 0.25);
+    padding: 0.15rem 0.4rem;
+    border-radius: 2px;
+    letter-spacing: 0.1em;
+}
+
+/* Texto del cuerpo */
+.legal-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(227, 225, 233, 0.75);
+}
+
+/* Resaltado dentro del texto */
+.legal-strong {
+    color: rgba(0, 240, 255, 0.85);
+    font-weight: 500;
+}
+
+/* Listas */
+.legal-list {
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 0;
+}
+.legal-list li {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(227, 225, 233, 0.75);
+    padding: 0.4rem 0 0.4rem 1.25rem;
+    position: relative;
+}
+.legal-list li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: rgba(0, 240, 255, 0.5);
+    font-family: monospace;
+}
+
+/* Etiqueta-clave dentro de las listas */
+.legal-key {
+    color: #00F0FF;
+    font-weight: 500;
+    margin-right: 0.35rem;
+}
+
+/* Enlaces */
+.legal-link {
+    color: rgba(0, 240, 255, 0.9);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+.legal-link:hover {
+    color: #00F0FF;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    #main-content {
+        left: 70px;
+    }
+    .legal-panel {
+        padding: 1.25rem 1.25rem;
+    }
+    .legal-h2 {
+        font-size: 1rem;
+    }
+    .legal-text,
+    .legal-list li {
+        font-size: 0.9rem;
+    }
+}

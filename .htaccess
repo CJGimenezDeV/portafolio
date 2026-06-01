@@ -57,8 +57,12 @@ ErrorDocument 404 /404.html
     Header set Referrer-Policy "strict-origin-when-cross-origin"
     # Limita permisos del navegador (no usamos cámara, micro, geoloc.)
     Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
-    # Fuerza https durante 1 año (HSTS). Actívalo SOLO cuando confirmes
-    # que el SSL funciona bien, porque es difícil de revertir.
+    # HSTS — fuerza HTTPS y el navegador lo recuerda.
+    # ARRANQUE PRUDENTE: max-age corto (1 día = 86400s) durante unos días.
+    # Si todo va bien, cambia 86400 por 31536000 (1 año) y, si quieres,
+    # añade ' includeSubDomains' al final para cubrir los subdominios.
+    Header set Strict-Transport-Security "max-age=86400"
+    # Versión final (descoméntala y borra la de arriba cuando estés seguro):
     # Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 </IfModule>
 

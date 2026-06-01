@@ -236,6 +236,15 @@
 <span>BUFFER: 100% DISPONIBLE</span>
 </div>
 </div>
+<!-- CONSENTIMIENTO RGPD — primera capa informativa (junto al form) -->
+<div class="group mt-2">
+<div class="flex items-start gap-3 border border-primary-container/10 bg-primary-container/5 p-4 transition-all rounded-sm">
+<input type="checkbox" name="consentimiento" id="field-consent" required="" class="consent-check mt-1 shrink-0"/>
+<label for="field-consent" class="font-mono-data text-[10px] text-primary-container/50 leading-relaxed tracking-wider cursor-pointer select-none">
+PROTOCOLO_RGPD // Acepto el tratamiento de mis datos (nombre y email) con la única finalidad de responder a esta consulta. No se ceden a terceros. Puedo ejercer mis derechos de acceso, rectificación y supresión escribiendo al responsable. Más detalle en la <a href="/politica-privacidad" class="text-primary-container/80 underline hover:text-primary-container" target="_blank" rel="noopener">política de privacidad</a>.
+</label>
+</div>
+</div>
 <div class="flex flex-col gap-3 pt-4 mt-auto">
 <!-- Barra principal - se llena con el formulario -->
 <div class="flex items-center gap-4">
@@ -292,7 +301,7 @@
     © 2026 CJ_CORE — CRISTIA GIMENEZ. TODOS LOS DERECHOS RESERVADOS. TRANSMISIÓN ENCRIPTADA.
 </div>
 <div class="flex space-x-8">
-<a class="text-[#00F0FF]/30 hover:text-[#00F0FF] transition-colors duration-500 font-mono-data text-[10px] tracking-[0.3em] uppercase" href="#">POLÍTICA_PRIVACIDAD</a>
+<a class="text-[#00F0FF]/30 hover:text-[#00F0FF] transition-colors duration-500 font-mono-data text-[10px] tracking-[0.3em] uppercase" href="/politica-privacidad">POLÍTICA_PRIVACIDAD</a>
 <a class="text-[#00F0FF]/30 hover:text-[#00F0FF] transition-colors duration-500 font-mono-data text-[10px] tracking-[0.3em] uppercase" href="#">ESTADO_SISTEMA</a>
 </div>
 </footer>

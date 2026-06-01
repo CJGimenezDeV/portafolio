@@ -110,6 +110,15 @@ let powerOn = true;
         transmissionForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
+            // --- Consentimiento RGPD obligatorio ---
+            const consent = document.getElementById('field-consent');
+            if (!consent.checked) {
+                document.getElementById('terminal-overlay').classList.add('active');
+                logTerminal("TRANSMISIÓN BLOQUEADA: CONSENTIMIENTO_RGPD REQUERIDO", "text-red-400 font-bold uppercase mt-2");
+                logTerminal("Marca la casilla de tratamiento de datos para continuar.", "text-red-400/70 uppercase");
+                return;
+            }
+
             // Abrimos la terminal y mostramos inicio (tu estética)
             logTerminal("INICIANDO TRANSMISIÓN DE PAQUETE...", "text-primary-container font-bold uppercase animate-pulse mt-2");
             document.getElementById('terminal-overlay').classList.add('active');

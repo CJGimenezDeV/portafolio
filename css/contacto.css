@@ -319,3 +319,43 @@
     .term-larga { display: none; }
     .term-corta { display: inline; }
 }
+
+/* ============================================================
+   Checkbox de consentimiento RGPD — estética HUD cyan.
+   Reemplaza el checkbox nativo por un cuadro [ ] / [x] cyan.
+   ============================================================ */
+.consent-check {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    background: rgba(0, 240, 255, 0.05);
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+.consent-check:hover {
+    border-color: rgba(0, 240, 255, 0.8);
+}
+.consent-check:checked {
+    background: rgba(0, 240, 255, 0.15);
+    border-color: #00F0FF;
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+}
+.consent-check:checked::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    width: 4px;
+    height: 8px;
+    border: solid #00F0FF;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+.consent-check:focus-visible {
+    outline: 1px solid rgba(0, 240, 255, 0.6);
+    outline-offset: 2px;
+}

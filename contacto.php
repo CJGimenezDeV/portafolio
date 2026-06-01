@@ -30,8 +30,15 @@ $nombre  = trim($_POST['nombre']  ?? '');
 $email   = trim($_POST['email']   ?? '');
 $mensaje = trim($_POST['mensaje'] ?? '');
 
+// --- Consentimiento RGPD (checkbox marcado) ---
+// El checkbox solo se envía si está marcado; si no llega, no hay consentimiento.
+$consentimiento = isset($_POST['consentimiento']);
+
 // --- Validación en servidor (nunca fiarse solo del JS) ---
 $errores = [];
+if (!$consentimiento) {
+    $errores[] = 'Debes aceptar el tratamiento de datos';
+}
 if ($nombre === '' || mb_strlen($nombre) > 100) {
     $errores[] = 'Nombre no válido';
 }
@@ -91,11 +98,13 @@ try {
         "<h2>Nuevo mensaje desde el portafolio</h2>" .
         "<p><strong>Nombre:</strong> {$nombreSafe}</p>" .
         "<p><strong>Email:</strong> {$emailSafe}</p>" .
-        "<p><strong>Mensaje:</strong><br>{$mensajeSafe}</p>";
+        "<p><strong>Mensaje:</strong><br>{$mensajeSafe}</p>" .
+        "<hr><p style='font-size:12px;color:#888'>Consentimiento RGPD aceptado el " . date('d/m/Y H:i:s') . "</p>";
 
     $mail->AltBody =
         "Nuevo mensaje desde el portafolio\n\n" .
-        "Nombre: {$nombre}\nEmail: {$email}\n\nMensaje:\n{$mensaje}";
+        "Nombre: {$nombre}\nEmail: {$email}\n\nMensaje:\n{$mensaje}\n\n" .
+        "Consentimiento RGPD aceptado el " . date('d/m/Y H:i:s');
 
     $mail->send();
     echo json_encode(['ok' => true]);
