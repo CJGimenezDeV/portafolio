@@ -496,3 +496,67 @@
     #proyecto-modal { padding: 0; }
     .proyecto-modal-marco { border: none; }
 }
+
+/* ==========================================
+   DESKTOP BAJO — portátiles (ancho desktop, poca altura)
+   Solo >768px ancho Y <700px alto. En portátil el iframe en
+   vivo de las cards se ve mal por la poca altura. Aplicamos el
+   MISMO truco que en móvil: ocultar el iframe y mostrar la
+   captura .webp (que se adapta limpia). El JS impide abrir el
+   modal/iframe en este rango (ver proyectos.js).
+   Además compactamos el header para que quepan más cards.
+   NO afecta a escritorio normal (>700px) ni a móvil (<769px).
+   ========================================== */
+@media (min-width: 769px) and (max-height: 700px) {
+    /* Captura en vez de iframe en vivo, igual que en móvil */
+    .solo-desktop { display: none !important; }
+    .solo-movil { display: block !important; }
+
+    /* Soltamos el layout fijo: el main pasa a flujo normal y la
+       página scrollea como cualquier web. Así las cards recuperan
+       su altura natural (h-48 = 192px) y la captura se ve entera,
+       sin pelear contra la compresión del overflow:hidden.
+       Solo en este rango; escritorio normal sigue con landing fijo. */
+    #main-content {
+        position: relative !important;
+        height: auto !important;
+        min-height: calc(100vh - 3.5rem) !important;
+        overflow: visible !important;
+        top: 0 !important;
+        bottom: auto !important;
+        left: 0 !important;
+        right: auto !important;
+        margin-top: 3.5rem !important;
+        margin-left: 70px !important;
+        width: calc(100% - 70px) !important;
+        box-sizing: border-box !important;
+    }
+    /* Sin scroll horizontal */
+    body {
+        overflow-x: hidden !important;
+    }
+    #main-content section {
+        overflow: visible !important;
+        flex-grow: 0 !important;
+        padding-top: 1.5rem !important;
+    }
+    /* Header más compacto para no robar tanto al entrar */
+    #main-content header {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+    /* La página scrollea, no el body fijo */
+    body {
+        overflow-y: auto !important;
+    }
+
+    /* Header más compacto: recupera alto para las cards */
+    #main-content header {
+        padding-top: 1.25rem !important;
+        padding-bottom: 1.25rem !important;
+    }
+    #main-content section {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+}

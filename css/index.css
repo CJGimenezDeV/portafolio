@@ -617,3 +617,23 @@
     0%, 100% { box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.4), 0 0 20px rgba(0, 240, 255, 0.12); border-color: rgba(0, 240, 255, 0.45); }
     50% { box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.8), 0 0 36px rgba(0, 240, 255, 0.32); border-color: rgba(0, 240, 255, 0.85); }
 }
+
+/* ==========================================
+   DESKTOP BAJO — suelo de altura (portátiles/ultrawide)
+   Solo >768px ancho Y <700px alto. El círculo (aspect-square)
+   se hace muy alto en pantallas bajas y se recorta.
+   Coherente con las escalas de ancho ya existentes: aquí
+   reducimos la escala por ALTURA, manteniendo el centrado
+   flex intacto (NO tocamos align-items ni el footer).
+   NO afecta a escritorio normal (>700px) ni a móvil (<769px).
+   ========================================== */
+@media (min-width: 769px) and (max-height: 700px) {
+    #main-content > .relative.aspect-square {
+        transform: scale(0.6) !important;
+    }
+}
+@media (min-width: 769px) and (max-height: 560px) {
+    #main-content > .relative.aspect-square {
+        transform: scale(0.48) !important;
+    }
+}

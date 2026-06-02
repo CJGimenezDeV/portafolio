@@ -109,8 +109,11 @@ let isPowerOn = true;
    ========================================== */
 
 function abrirProyecto(url, titulo) {
-    /* En móvil no se abre el modal: la tarjeta muestra la captura ("ábrelo en escritorio") */
+    /* En móvil NO se abre el modal: la tarjeta muestra la captura ("ábrelo en escritorio").
+       En portátil (ancho desktop pero poca altura) tampoco: el iframe se ve mal por
+       la altura, así que se queda en la captura igual que en móvil. */
     if (window.matchMedia('(max-width: 768px)').matches) return;
+    if (window.matchMedia('(min-width: 769px) and (max-height: 700px)').matches) return;
     var modal = document.getElementById('proyecto-modal');
     if (!modal) return;
     var frame = document.getElementById('proyecto-modal-frame');

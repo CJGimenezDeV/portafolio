@@ -359,3 +359,16 @@
     outline: 1px solid rgba(0, 240, 255, 0.6);
     outline-offset: 2px;
 }
+
+/* ==========================================
+   OVERLAYS APAGAR/REINICIAR — texto adaptado a móvil
+   Versión corta en móvil, larga en desktop (mismo patrón
+   que .term-*). El escritorio NO se toca.
+   ========================================== */
+.ovl-corta { display: none; }
+.ovl-larga { display: inline; }
+
+@media (max-width: 768px) {
+    .ovl-larga { display: none; }
+    .ovl-corta { display: inline; }
+}
