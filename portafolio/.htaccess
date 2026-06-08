@@ -1,0 +1,111 @@
+# ============================================================
+#  .htaccess — Portafolio cjgimenez.com (CJ_CORE)
+#  Producción en LucusHost (Apache)
+# ============================================================
+
+# ------------------------------------------------------------
+# Motor de reescritura (necesario para todo lo de abajo)
+# ------------------------------------------------------------
+RewriteEngine On
+RewriteBase /
+
+# ------------------------------------------------------------
+# 1) FORZAR HTTPS
+#    Si alguien entra por http://, lo mandamos a https://
+# ------------------------------------------------------------
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ------------------------------------------------------------
+# 2) QUITAR WWW
+#    www.cjgimenez.com  ->  cjgimenez.com
+# ------------------------------------------------------------
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [L,R=301]
+
+# ------------------------------------------------------------
+# 3) URLS LIMPIAS (sin .html)
+#    /sobre-mi  ->  sirve sobre-mi.html (sin que cambie la URL)
+# ------------------------------------------------------------
+
+# 3a) Si alguien escribe la URL vieja con .html, lo redirigimos
+#     a la versión limpia (301). Así los links antiguos no se pierden.
+#     (No afecta a index.html ni 404.html)
+RewriteCond %{THE_REQUEST} \s/+([^.\s]+)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# 3b) Internamente, /sobre-mi carga el archivo sobre-mi.html
+#     (la URL en el navegador se queda limpia)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+# ------------------------------------------------------------
+# 4) PÁGINA 404 PERSONALIZADA
+# ------------------------------------------------------------
+ErrorDocument 404 /404.html
+
+# ------------------------------------------------------------
+# 5) CABECERAS DE SEGURIDAD
+# ------------------------------------------------------------
+<IfModule mod_headers.c>
+    # Evita que el navegador "adivine" tipos de archivo (anti-ataques)
+    Header set X-Content-Type-Options "nosniff"
+    # Evita que tu web se cargue dentro de un iframe de otro (anti-clickjacking)
+    Header set X-Frame-Options "SAMEORIGIN"
+    # Controla qué info de referencia se envía a otras webs
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    # Limita permisos del navegador (no usamos cámara, micro, geoloc.)
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    # HSTS — fuerza HTTPS y el navegador lo recuerda.
+    # ARRANQUE PRUDENTE: max-age corto (1 día = 86400s) durante unos días.
+    # Si todo va bien, cambia 86400 por 31536000 (1 año) y, si quieres,
+    # añade ' includeSubDomains' al final para cubrir los subdominios.
+    Header set Strict-Transport-Security "max-age=86400"
+    # Versión final (descoméntala y borra la de arriba cuando estés seguro):
+    # Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# ------------------------------------------------------------
+# 6) COMPRESIÓN GZIP (la web pesa menos = carga más rápido)
+# ------------------------------------------------------------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE font/ttf font/otf font/woff font/woff2
+</IfModule>
+
+# ------------------------------------------------------------
+# 7) CACHÉ DEL NAVEGADOR (vuelve a cargar más rápido al repetir visita)
+# ------------------------------------------------------------
+<IfModule mod_expires.c>
+    ExpiresActive On
+    # HTML: poca caché (para que vean cambios pronto)
+    ExpiresByType text/html "access plus 0 seconds"
+    # CSS y JS: 1 mes
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    # Imágenes y fuentes: 1 año
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# ------------------------------------------------------------
+# 8) PROTEGER EL PROPIO .htaccess
+# ------------------------------------------------------------
+<Files ".htaccess">
+    Require all denied
+</Files>
+
+# ------------------------------------------------------------
+# 9) PROTEGER config.php (credenciales SMTP)
+#    Nadie debe poder abrirlo por URL.
+# ------------------------------------------------------------
+<Files "config.php">
+    Require all denied
+</Files>

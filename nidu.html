@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nidu — Software de gestión para negocios de barrio | Cristia Gimenez</title>
+<meta name="description" content="Nidu es un software web para gestionar tu negocio de barrio: agenda y reservas, ficha de clientes, caja diaria, comisiones y copias de seguridad. Un solo panel. Creado por Cristia Gimenez."/>
+<link rel="canonical" href="https://cjgimenez.com/nidu"/>
+<meta name="author" content="Cristia Gimenez"/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
+<meta name="keywords" content="Nidu, software gestión negocio, software peluquería, software taller, gestión citas, CRM negocio pequeño, programa para barbería, caja diaria, Cristia Gimenez"/>
+<meta name="geo.region" content="ES-AR"/>
+<meta name="geo.placename" content="Zaragoza, España"/>
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Cristia Gimenez — CJ_CORE"/>
+<meta property="og:locale" content="es_ES"/>
+<meta property="og:url" content="https://cjgimenez.com/nidu"/>
+<meta property="og:title" content="Nidu — Software de gestión para negocios de barrio"/>
+<meta property="og:description" content="Toda tu operativa en un solo núcleo: agenda, clientes, caja, comisiones y copias de seguridad. El SaaS de Cristia Gimenez para talleres, peluquerías y tiendas."/>
+<meta property="og:image" content="https://cjgimenez.com/img/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Nidu — Panel de gestión para negocios"/>
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Nidu — Software de gestión para negocios de barrio"/>
+<meta name="twitter:description" content="Toda tu operativa en un solo núcleo: agenda, clientes, caja, comisiones y copias de seguridad."/>
+<meta name="twitter:image" content="https://cjgimenez.com/img/og-image.png"/>
+<!-- Theme -->
+<meta name="theme-color" content="#0a0b10"/>
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg"/>
+<link rel="icon" type="image/png" href="img/favicon-32.png"/>
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
+<link rel="stylesheet" href="css/tailwind.css"/>
+<link rel="stylesheet" href="css/fonts.css"/>
+<link rel="stylesheet" href="css/cursor.css"/>
+<link rel="stylesheet" href="css/nidu.css"/>
+<link rel="stylesheet" href="css/page-transition.css"/>
+<link rel="stylesheet" href="css/lang-button.css"/>
+<!-- Datos estructurados Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Nidu",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "url": "https://cjgimenez.com/nidu",
+  "softwareVersion": "Beta (90%)",
+  "creator": {
+    "@type": "Person",
+    "name": "Cristia Gimenez",
+    "url": "https://cjgimenez.com/"
+  },
+  "description": "Software web de gestión para negocios de barrio: agenda y reservas, ficha de clientes y CRM, caja diaria, comisiones por empleado y copias de seguridad espejo.",
+  "featureList": [
+    "Agenda y reservas con cálculo de aforo",
+    "Expedientes de clientes y CRM con alertas",
+    "Caja diaria y libro de movimientos",
+    "Comisiones automáticas por empleado",
+    "Copia de seguridad espejo automatizada"
+  ]
+}
+</script>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container/30">
+<!-- Overlays -->
+<div id="encryption-overlay" onclick="togglePower()">
+<div class="text-primary-container animate-pulse flex flex-col items-center">
+<span class="material-symbols-outlined text-8xl mb-6">lock</span>
+<h2 class="font-headline-lg tracking-[0.3em] text-3xl md:text-5xl uppercase">BIO_ESTASIS</h2>
+<p class="font-mono-data text-sm mt-6 tracking-[0.6em] opacity-50 uppercase">PULSA PARA REACTIVAR</p>
+</div>
+</div>
+<div id="purge-overlay">
+<div class="relative z-10 flex flex-col items-center">
+<div class="text-[#00F0FF] font-headline-md tracking-[0.3em] mb-2 uppercase text-center">RECALIBRACIÓN_SISTEMA</div>
+<div class="text-primary-container/40 font-mono-data text-[10px] mb-8 uppercase tracking-[0.5em]">USUARIO: CRISTIA GIMENEZ</div>
+<div class="w-80 h-1 bg-white/5 relative mb-4">
+<div class="absolute inset-y-0 left-0 bg-primary-container shadow-[0_0_15px_#00F0FF] w-0 transition-all duration-[3000ms] ease-linear" id="purge-bar"></div>
+</div>
+<div class="text-primary-container font-mono-data text-[10px] uppercase tracking-widest animate-pulse" id="reset-status">INICIALIZANDO PURGA...</div>
+</div>
+</div>
+<div id="terminal-overlay">
+<div class="flex justify-between items-center border-b border-[#00F0FF]/30 pb-2 mb-3">
+<span class="text-[8px] uppercase tracking-[0.2em] font-bold">CJ_CORE // CONSOLA_SISTEMA</span>
+<span class="cursor-pointer hover:text-white" onclick="toggleTerminal()">[X]</span>
+</div>
+<div class="flex-grow overflow-y-auto space-y-1 no-scrollbar text-[9px]" id="terminal-content">
+<div class="text-white/40">&gt; Ficha de producto: NIDU — by Cristia Gimenez</div>
+<div class="text-primary-container">&gt; Software de gestión para negocios de barrio</div>
+<div class="text-white/40">&gt; Agenda · clientes · caja · comisiones · copias</div>
+<div class="text-white/40">&gt; Para: talleres, peluquerías, barberías, tiendas</div>
+<div class="text-green-400">&gt; Estado: BETA 90% // Núcleo operativo.</div>
+</div>
+</div>
+<div class="tech-nebula-bg" id="nebula-bg"></div>
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-[70] flex justify-between items-center px-6 h-14 bg-surface/80 backdrop-blur-md border-b border-primary-container/20">
+<div class="flex items-center gap-4">
+<a href="/" class="block cursor-pointer" aria-label="CJ - Cristia Gimenez - Inicio">
+<svg width="120" height="48" viewBox="0 0 140 56" xmlns="http://www.w3.org/2000/svg">
+<text x="58" y="30" text-anchor="middle" fill="#00F0FF" font-family="monospace" font-size="30" font-weight="900" style="filter:drop-shadow(0 0 6px #00F0FF);">C</text>
+<text x="82" y="30" text-anchor="middle" fill="#00F0FF" font-family="monospace" font-size="30" font-weight="900" style="filter:drop-shadow(0 0 6px #00F0FF);">J</text>
+<path d="M 22 8 L 10 8 L 10 42 L 22 42" fill="none" stroke="#00F0FF" stroke-width="2.2"/>
+<path d="M 118 8 L 130 8 L 130 42 L 118 42" fill="none" stroke="#00F0FF" stroke-width="2.2"/>
+<text x="70" y="52" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="8.5" letter-spacing="2.5">CRISTIA GIMENEZ</text>
+</svg>
+</a>
+</div>
+<div class="hidden md:flex items-center space-x-10 absolute left-1/2 -translate-x-1/2" style="left: calc(50% + 25px);">
+<a class="font-mono-data tracking-[0.2em] uppercase text-[11px] text-on-surface-variant hover:text-primary-container transition-colors" href="/">INICIO</a>
+<a class="font-mono-data tracking-[0.2em] uppercase text-[11px] text-on-surface-variant hover:text-primary-container transition-colors" href="/sobre-mi">SOBRE MÍ</a>
+<a class="font-mono-data tracking-[0.2em] uppercase text-[11px] text-primary-container border-b-2 border-primary-container pb-1" href="/mis-proyectos">PROYECTOS</a>
+<a class="font-mono-data tracking-[0.2em] uppercase text-[11px] text-on-surface-variant hover:text-primary-container transition-colors" href="/contacto">CONTACTO</a>
+</div>
+<div class="flex items-center space-x-6">
+<div class="relative" id="lang-wrapper">
+<button type="button" class="flex items-center gap-2 text-primary-container/60 hover:text-primary-container transition-all duration-300 group/lang" id="lang-selector" aria-haspopup="true" aria-expanded="false">
+<span class="material-symbols-outlined text-[20px] group-hover/lang:rotate-45 transition-transform duration-500">language</span>
+<span class="text-[10px] font-mono-data tracking-[0.2em] font-bold" id="lang-current-label">[ ES ]</span>
+</button>
+<div class="lang-dropdown absolute right-0 mt-4 w-32 bg-surface-container-low/95 backdrop-blur-xl border border-primary-container/20 py-2 transition-all duration-300 z-[100] shadow-[0_10px_30px_rgba(0,0,0,0.5)]" id="lang-dropdown">
+<div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary-container/50 to-transparent"></div>
+<button type="button" class="w-full px-4 py-2 flex items-center justify-between font-mono-data text-[10px] hover:bg-primary-container/10 transition-colors text-primary-container" data-lang-option="es">
+<span>ESPAÑOL</span>
+<span class="w-1 h-1 bg-primary-container shadow-[0_0_5px_#00F0FF] rounded-full" data-lang-indicator="es"></span>
+</button>
+<button type="button" class="w-full px-4 py-2 flex items-center justify-between font-mono-data text-[10px] hover:bg-primary-container/10 hover:text-primary-container transition-colors text-on-surface-variant/60" data-lang-option="en">
+<span>ENGLISH</span>
+<span class="w-1 h-1 bg-transparent rounded-full" data-lang-indicator="en"></span>
+</button>
+</div>
+</div>
+<button class="text-primary-container/60 hover:text-primary-container transition-colors flex items-center justify-center h-full" onclick="toggleTerminal()">
+<span class="material-symbols-outlined">terminal</span>
+</button>
+</div>
+</nav>
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-14 h-[calc(100%-3.5rem)] flex flex-col bg-[#0d0e13] backdrop-blur-2xl border-r border-[#00F0FF]/10 transition-all duration-300 group overflow-hidden z-[60]" id="sidebar">
+<div class="flex flex-col flex-grow">
+<div class="px-4 py-8 flex items-center cursor-pointer">
+<div class="w-10 h-10 min-w-[40px] border border-primary-container/30 flex items-center justify-center bg-black rounded-sm overflow-hidden">
+<svg width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="CJ avatar">
+<polygon points="50,8 86,28 86,72 50,92 14,72 14,28" fill="none" stroke="#00F0FF" stroke-width="2" opacity="0.4"/>
+<polygon points="50,16 79,32 79,68 50,84 21,68 21,32" fill="none" stroke="#00F0FF" stroke-width="1" opacity="0.8"/>
+<text x="50" y="62" text-anchor="middle" fill="#00F0FF" font-family="monospace" font-size="32" font-weight="900" style="filter:drop-shadow(0 0 4px #00F0FF);">CJ</text>
+<circle cx="50" cy="8" r="2" fill="#00F0FF"/>
+<circle cx="50" cy="92" r="2" fill="#00F0FF"/>
+</svg>
+</div>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity ml-5 whitespace-nowrap overflow-hidden">
+<div class="text-primary-container font-bold text-xs tracking-widest uppercase">CRISTIA GIMENEZ</div>
+<div class="text-primary-container/30 text-[8px] tracking-[0.3em] font-mono-data uppercase">SYS_AUTH_04</div>
+</div>
+</div>
+<nav class="flex flex-col">
+<a class="flex items-center h-14 text-on-surface-variant hover:bg-primary-container/5 hover:text-primary-container px-6 transition-all border-l-2 border-transparent" href="/">
+<span class="material-symbols-outlined">terminal</span>
+<span class="ml-8 font-mono-data text-[11px] tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-opacity uppercase whitespace-nowrap">INICIO</span>
+</a>
+<a class="flex items-center h-14 text-on-surface-variant hover:bg-primary-container/5 hover:text-primary-container px-6 transition-all border-l-2 border-transparent" href="/sobre-mi">
+<span class="material-symbols-outlined">person_search</span>
+<span class="ml-8 font-mono-data text-[11px] tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-opacity uppercase whitespace-nowrap">SOBRE MÍ</span>
+</a>
+<a class="bg-primary-container/10 text-primary-container border-l-2 border-primary-container flex items-center h-14 px-6" href="/mis-proyectos">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="ml-8 font-mono-data text-[11px] tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-opacity uppercase whitespace-nowrap font-bold">PROYECTOS</span>
+</a>
+<a class="flex items-center h-14 text-on-surface-variant hover:bg-primary-container/5 hover:text-primary-container px-6 transition-all border-l-2 border-transparent" href="/contacto">
+<span class="material-symbols-outlined">rebase_edit</span>
+<span class="ml-8 font-mono-data text-[11px] tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-opacity uppercase whitespace-nowrap">CONTACTO</span>
+</a>
+</nav>
+</div>
+<div class="flex flex-col border-t border-primary-container/5">
+<div class="flex items-center h-14 text-red-500 hover:bg-red-600 hover:text-white px-6 cursor-pointer transition-all" id="power-btn" onclick="togglePower()">
+<span class="material-symbols-outlined">power_settings_new</span>
+<span class="ml-8 font-mono-data text-[11px] tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-opacity uppercase whitespace-nowrap font-bold">APAGAR</span>
+</div>
+<div class="flex items-center h-14 text-primary-container/40 hover:bg-primary-container/10 hover:text-primary-container px-6 cursor-pointer transition-all" onclick="resetSystem()">
+<span class="material-symbols-outlined">restart_alt</span>
+<span class="ml-8 font-mono-data text-[11px] tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-opacity uppercase whitespace-nowrap font-bold">REINICIAR</span>
+</div>
+</div>
+</aside>
+<!-- Content Area -->
+<main class="fixed overflow-y-auto no-scrollbar" style="top: 3.5rem; left: 70px; right: 0; bottom: 0;" id="nidu-main">
+<div class="nidu-wrap">
+
+<!-- ===== HERO ===== -->
+<section class="nidu-hero">
+<div class="nidu-hero-copy">
+<span class="nidu-eyebrow">Producto estrella · CJ_CORE</span>
+<h1 class="nidu-title">NI<span class="accent">DU</span></h1>
+<p class="nidu-tagline">Toda tu operativa. <b>Un solo núcleo.</b></p>
+<p class="nidu-lead">Nidu es el software web que estoy construyendo para los negocios de barrio — talleres, peluquerías, barberías, tiendas. Agenda, clientes, caja y comisiones dejan de vivir en cuadernos y hojas sueltas y pasan a un único panel, claro y rápido.</p>
+<div class="nidu-badges">
+<span class="nidu-badge"><span class="dot"></span>Beta · 90% completado</span>
+<span class="nidu-badge cyan">PHP 8 · MySQL · JS Vanilla</span>
+<span class="nidu-badge cyan">Proyecto propio</span>
+</div>
+<div class="nidu-actions">
+<a href="/contacto" class="nidu-btn nidu-btn-primary">
+Pedir una demo
+<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+</a>
+<a href="#nidu-funciones" class="nidu-btn nidu-btn-ghost">
+Ver qué hace
+</a>
+</div>
+</div>
+<div class="nidu-hero-shot nidu-reveal">
+<div class="nidu-shot">
+<span class="nidu-shot-corner tl"></span>
+<span class="nidu-shot-corner br"></span>
+<div class="nidu-shot-bar">
+<i></i><i></i><i></i>
+<span class="nidu-shot-url">app.cjgimenez.com</span>
+</div>
+<img src="img/proyectos/nidu-agenda.webp" alt="Panel de Nidu en marcha: agenda de citas del día con clientes, servicios y estado de cobro" loading="lazy"/>
+</div>
+</div>
+</section>
+
+<!-- ===== FUNCIONES ===== -->
+<section class="nidu-section" id="nidu-funciones">
+<div class="nidu-section-head nidu-reveal">
+<span class="nidu-eyebrow">Qué resuelve</span>
+<h2 class="nidu-h2">El día a día del negocio, <span class="accent">sin caos</span></h2>
+<p class="nidu-sub">Cada función nace de un problema real de un negocio pequeño: la cita que se pierde, la caja que no cuadra, el cliente del que no recuerdas nada. Nidu lo junta todo en un sitio.</p>
+</div>
+<div class="nidu-feats">
+
+<article class="nidu-feat nidu-reveal">
+<span class="nidu-feat-n">01</span>
+<div class="nidu-feat-ico">
+<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="1.5"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line><circle cx="12" cy="15" r="1.4" fill="currentColor" stroke="none"></circle></svg>
+</div>
+<h3 class="nidu-feat-t">Agenda y reservas</h3>
+<p class="nidu-feat-d">Citas y reservas con cálculo de aforo en tiempo real. Sabes de un vistazo qué hueco queda libre y cuándo estás al completo.</p>
+</article>
+
+<article class="nidu-feat nidu-reveal">
+<span class="nidu-feat-n">02</span>
+<div class="nidu-feat-ico">
+<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="9" cy="11" r="2.2"></circle><path d="M5.5 17c.6-1.8 2-2.6 3.5-2.6s2.9.8 3.5 2.6"></path><line x1="15" y1="10" x2="18.5" y2="10"></line><line x1="15" y1="13.5" x2="18.5" y2="13.5"></line></svg>
+</div>
+<h3 class="nidu-feat-t">Clientes y CRM</h3>
+<p class="nidu-feat-d">Expedientes con el historial de cada cliente y alertas automáticas. Recuerdas lo importante sin depender de la memoria.</p>
+</article>
+
+<article class="nidu-feat nidu-reveal">
+<span class="nidu-feat-n">03</span>
+<div class="nidu-feat-ico">
+<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="1.5"></rect><path d="M3 10h18"></path><circle cx="16.5" cy="14.5" r="1.4"></circle></svg>
+</div>
+<h3 class="nidu-feat-t">Caja diaria</h3>
+<p class="nidu-feat-d">Caja del día y libro de movimientos. Cada ingreso y gasto queda registrado, así el cierre cuadra siempre.</p>
+</article>
+
+<article class="nidu-feat nidu-reveal">
+<span class="nidu-feat-n">04</span>
+<div class="nidu-feat-ico">
+<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="7.5" r="2.5"></circle><circle cx="16.5" cy="16.5" r="2.5"></circle><line x1="18" y1="6" x2="6" y2="18"></line></svg>
+</div>
+<h3 class="nidu-feat-t">Comisiones automáticas</h3>
+<p class="nidu-feat-d">Cada empleado, su comisión calculada sola a partir de lo que produce. Se acabó la calculadora a fin de mes.</p>
+</article>
+
+<article class="nidu-feat nidu-reveal">
+<span class="nidu-feat-n">05</span>
+<div class="nidu-feat-ico">
+<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.5-7 9-4-1.5-7-4.6-7-9V6z"></path><polyline points="9 12 11.5 14.5 15.5 9.8"></polyline></svg>
+</div>
+<h3 class="nidu-feat-t">Copia de seguridad espejo</h3>
+<p class="nidu-feat-d">Respaldo automático y duplicado de tus datos. Si algo falla, tu negocio no pierde su información.</p>
+</article>
+
+<article class="nidu-feat nidu-reveal">
+<span class="nidu-feat-n">06</span>
+<div class="nidu-feat-ico">
+<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+</div>
+<h3 class="nidu-feat-t">Un solo panel</h3>
+<p class="nidu-feat-d">Todo lo anterior vive junto, con la misma lógica y el mismo diseño. Nada de saltar entre apps ni cuadernos.</p>
+</article>
+
+</div>
+</section>
+
+<!-- ===== GALERÍA: POR DENTRO ===== -->
+<section class="nidu-section">
+<div class="nidu-section-head nidu-reveal">
+<span class="nidu-eyebrow">Míralo por dentro</span>
+<h2 class="nidu-h2">No es una maqueta: <span class="accent">funciona</span></h2>
+<p class="nidu-sub">Capturas reales del panel en marcha. Esto es lo que usa el negocio cada día.</p>
+</div>
+<div class="nidu-gallery">
+
+<article class="nidu-gitem nidu-reveal">
+<div class="nidu-gbar"><i></i><i></i><i></i><span>Agenda y reservas</span></div>
+<div class="nidu-gmedia"><img src="img/proyectos/nidu-agenda.webp" alt="Panel de Nidu: agenda de citas del día con clientes, servicios, profesional asignado y estado de cobro" loading="lazy"/></div>
+<div class="nidu-gcap">
+<h3>Agenda de citas</h3>
+<p>La planificación del día: hora, cliente, servicio, quién atiende y si está cobrado o pendiente. Con total de citas e ingresos estimados.</p>
+</div>
+</article>
+
+<article class="nidu-gitem nidu-reveal">
+<div class="nidu-gbar"><i></i><i></i><i></i><span>Fichas de clientes</span></div>
+<div class="nidu-gmedia"><img src="img/proyectos/nidu-clientes.webp" alt="Panel de Nidu: fichas de clientes con historial y alertas críticas como alergias a tintes" loading="lazy"/></div>
+<div class="nidu-gcap">
+<h3>Fichas y alertas</h3>
+<p>Cada cliente con su historial y avisos críticos — alergias, preferencias, cuero cabelludo sensible. Lo importante, siempre a la vista.</p>
+</div>
+</article>
+
+<article class="nidu-gitem nidu-reveal">
+<div class="nidu-gbar"><i></i><i></i><i></i><span>Facturación</span></div>
+<div class="nidu-gmedia"><img src="img/proyectos/nidu-facturacion.webp" alt="Panel de Nidu: registro de facturas con base, IVA, total y estado (pagada, emitida, anulada)" loading="lazy"/></div>
+<div class="nidu-gcap">
+<h3>Facturación con IVA</h3>
+<p>Facturas con numeración correlativa, desglose de IVA y exportación a PDF. Estados de pagada, emitida o anulada y total pendiente de cobro.</p>
+</div>
+</article>
+
+<article class="nidu-gitem nidu-reveal">
+<div class="nidu-gbar"><i></i><i></i><i></i><span>Productos y stock</span></div>
+<div class="nidu-gmedia"><img src="img/proyectos/nidu-productos.webp" alt="Panel de Nidu: catálogo de productos con precio, IVA, control de stock y venta directa" loading="lazy"/></div>
+<div class="nidu-gcap">
+<h3>Productos y stock</h3>
+<p>Catálogo con control de stock y venta directa: vender un producto lo registra en caja y descuenta del inventario automáticamente.</p>
+</div>
+</article>
+
+</div>
+</section>
+<!-- ===== PARA QUIÉN ===== -->
+<section class="nidu-section">
+<div class="nidu-section-head nidu-reveal">
+<span class="nidu-eyebrow">Para quién</span>
+<h2 class="nidu-h2">Pensado para el <span class="accent">negocio de barrio</span></h2>
+<p class="nidu-sub">No es un ERP gigante ni una hoja de cálculo improvisada. Es el punto medio que le faltaba al comercio de toda la vida.</p>
+</div>
+<div class="nidu-targets nidu-reveal">
+<span class="nidu-target">
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l1.5 4M18 3l-1.5 4"></path><path d="M5 7h14l-1 4H6z"></path><line x1="8" y1="11" x2="8" y2="21"></line><line x1="16" y1="11" x2="16" y2="21"></line><line x1="8" y1="21" x2="16" y2="21"></line></svg>
+Peluquerías
+</span>
+<span class="nidu-target">
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"></circle><circle cx="6" cy="18" r="2.5"></circle><line x1="8" y1="7.5" x2="20" y2="17"></line><line x1="8" y1="16.5" x2="20" y2="7"></line></svg>
+Barberías
+</span>
+<span class="nidu-target">
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 7l3-3 3 3-3 3"></path><path d="M16.5 5.5L9 13l2 2 7.5-7.5"></path><path d="M9 13l-5 5 2 2 5-5"></path></svg>
+Talleres
+</span>
+<span class="nidu-target">
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l1-4h14l1 4"></path><path d="M5 9v10h14V9"></path><path d="M4 9h16"></path><path d="M9 19v-5h6v5"></path></svg>
+Tiendas de barrio
+</span>
+<span class="nidu-target">
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"></circle><path d="M5 20c.7-3.6 3.3-5.5 7-5.5s6.3 1.9 7 5.5"></path></svg>
+Centros de estética
+</span>
+</div>
+</section>
+
+<!-- ===== ESTADO / STACK ===== -->
+<section class="nidu-section">
+<div class="nidu-strip nidu-reveal">
+<div>
+<div class="nidu-strip-label">Construido con</div>
+<div class="nidu-chips">
+<span class="nidu-chip">PHP 8</span>
+<span class="nidu-chip">MySQL</span>
+<span class="nidu-chip">JS Vanilla</span>
+</div>
+</div>
+<div class="nidu-progress-wrap">
+<div class="nidu-progress-top">
+<span>Estado del desarrollo</span>
+<span>90%</span>
+</div>
+<div class="nidu-progress"><span></span></div>
+</div>
+</div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="nidu-cta nidu-reveal">
+<span class="nidu-cta-corner tl"></span>
+<span class="nidu-cta-corner tr"></span>
+<span class="nidu-cta-corner bl"></span>
+<span class="nidu-cta-corner br"></span>
+<h2>¿Tienes un negocio de barrio?</h2>
+<p>Nidu está al 90% y la enseño funcionando en una demo, contigo delante, para resolver tus dudas en directo. Escríbeme y la vemos juntos.</p>
+<a href="/contacto" class="nidu-btn nidu-btn-primary">
+Pedir una demo conmigo
+<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+</a>
+</section>
+
+<!-- Footer -->
+<footer class="flex flex-col items-center justify-center gap-3 w-full border-t border-dashed border-[#00F0FF]/20 py-6">
+<div class="text-[#00F0FF]/40 font-mono-data text-[10px] tracking-[0.25em] uppercase text-center px-6">
+© 2026 Cristia Gimenez — Nidu es un producto de CJ_CORE — cjgimenez.com
+</div>
+<div class="flex gap-8">
+<a class="text-[#00F0FF]/30 hover:text-[#00F0FF] transition-colors duration-500 font-mono-data text-[10px] tracking-[0.25em] uppercase" href="/mis-proyectos">← Volver a proyectos</a>
+<a class="text-[#00F0FF]/30 hover:text-[#00F0FF] transition-colors duration-500 font-mono-data text-[10px] tracking-[0.25em] uppercase" href="/politica-privacidad">Privacidad</a>
+</div>
+</footer>
+
+</div>
+</main>
+<script src="js/nidu.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/page-transition.js"></script>
+<script src="js/lang-button.js"></script>
+</body></html>

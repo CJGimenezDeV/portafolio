@@ -1,0 +1,10 @@
+/* ==========================================
+   I18N — Estilos del selector de idioma
+   ========================================== */
+
+/* En desktop, el dropdown se abre por hover (Tailwind: group-hover).
+   En móvil táctil, hover no existe — usamos .lang-open via JS click. */
+.lang-open > div[class*="absolute"] {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
